@@ -1,0 +1,41 @@
+
+---
+const {
+  title = 'geut: Boutique JS Studio',
+  description = 'From MVPs to scale, with clarity and craft'
+} = Astro.props;
+
+import '../styles/global.css';
+import { ClientRouter } from "astro:transitions";
+import { Font } from 'astro:assets';
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name='description' content={description} />
+		<title>{title}</title>
+		<Font cssVariable='--font-inter' preload />
+		<ClientRouter />
+		<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+		<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+	</head>
+	<body class="bg-white h-screen w-full overflow-hidden">
+		<slot />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+	}
+	[data-container="booking-container"] {
+		min-width: 320px !important;
+		height: 750px !important;
+		overflow: hidden !important; 
+	}
+</style>

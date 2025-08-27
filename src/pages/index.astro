@@ -1,0 +1,11 @@
+---
+import Hero from '../components/sections/Hero.astro';
+import Layout from '../layouts/Layout.astro';
+import { navLinks, blurb, motto } from '../data';
+
+
+---
+
+<Layout>
+	<Hero navLinks={navLinks} blurb={blurb} motto={motto} />
+</Layout>

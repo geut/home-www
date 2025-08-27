@@ -1,0 +1,195 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "@tailwindcss/typography";
+@config "../../tailwind.config.ts";
+
+
+@plugin "daisyui/theme" {
+  name: "geut";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(98% 0 0);
+  --color-base-300: oklch(95% 0 0);
+  --color-base-content: oklch(21% 0.006 285.885);
+  --color-primary: oklch(0.4636 0.2997 264.77);
+  --color-primary-content: oklch(93% 0.034 272.788);
+  --color-secondary: oklch(0.2148 0.1462 265.91);
+  --color-secondary-content: oklch(94% 0.028 342.258);
+  --color-accent: oklch(0.9337 0.1689 129.33);
+  --color-accent-content: oklch(38% 0.063 188.416);
+  --color-neutral: oklch(0.235 0 0);
+  --color-neutral-content: oklch(92% 0.004 286.32);
+  --color-info: oklch(0.9401 0 0);
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(0.8 0.25 148.76);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(0.8933 0.1844 97.77);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: oklch(0.62 0.2524 27);
+  --color-error-content: oklch(12% 0.042 264.695);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "geut-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+
+  /* Base derived from PRIMARY hue (≈264.77), low–mid chroma for a subtle indigo tint */
+  --color-base-100: oklch(0.13 0.050 264.77); /* canvas: deep indigo-black */
+  --color-base-200: oklch(0.17 0.060 264.77); /* raised */
+  --color-base-300: oklch(0.22 0.065 264.77); /* card */
+  --color-base-content: oklch(0.96 0.020 270);  /* main text on base */
+
+  /* Brighter brand on dark */
+  --color-primary: oklch(0.58 0.33 264.77);       /* vivid indigo-blue */
+  --color-primary-content: oklch(0.98 0.02 272.8);
+
+  --color-secondary: oklch(0.36 0.20 265.91);     /* brighter secondary indigo */
+  --color-secondary-content: oklch(0.96 0.02 342.3);
+
+  --color-accent: oklch(0.88 0.19 129.33);        /* lime accent */
+  --color-accent-content: oklch(0.14 0.02 265);
+
+  /* Neutral tied to base hue so the whole theme feels cohesive */
+  --color-neutral: oklch(0.18 0.045 264.77);
+  --color-neutral-content: oklch(0.92 0.015 270);
+
+  /* Status (balanced for dark) */
+  --color-info: oklch(0.83 0.07 240);
+  --color-info-content: oklch(0.96 0.01 262);
+
+  --color-success: oklch(0.78 0.25 149);
+  --color-success-content: oklch(0.96 0.01 262);
+
+  --color-warning: oklch(0.83 0.22 98);
+  --color-warning-content: oklch(0.96 0.01 262);
+
+  --color-error: oklch(0.62 0.28 27);
+  --color-error-content: oklch(0.97 0.02 265);
+
+  /* Shape & depth parity */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+&::-webkit-scrollbar {
+  display: none !important;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+@font-face {
+  font-family: 'Avantt';
+  src: url('src/assets/fonts/Avantt-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@custom-variant has-hover (@media (hover: hover));
+@custom-variant no-hover (@media not all and (hover: hover));
+@custom-variant hover-always {
+  @media (hover: hover) {
+    &:hover {
+      @slot;
+    }
+  }
+  @media not all and (hover: hover) {
+    & {
+      @slot;
+    }
+  }
+}
+@custom-variant mobile-hover (&:hover);
+
+@theme {
+  --animate-background-shine: background-shine 8s ease-in-out infinite;
+
+  @keyframes background-shine {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+
+  --font-avantt: "Avantt", sans-serif;
+  --font-ibm-plex-mono: "IBM Plex Mono", monospace;
+  --font-inter: "Inter", sans-serif;
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-ibm-plex-mono);
+
+  @keyframes wave-3d {
+    0%, 100% { 
+      transform: perspective(600px) rotateX(0deg) rotateY(0deg) skewY(-3deg) translateZ(0px);
+    }
+    25% { 
+      transform: perspective(600px) rotateX(3deg) rotateY(1deg) skewY(-2deg) translateZ(6px);
+    }
+    50% { 
+      transform: perspective(600px) rotateX(-2deg) rotateY(-1deg) skewY(-4deg) translateZ(4px);
+    }
+    75% { 
+      transform: perspective(600px) rotateX(1deg) rotateY(0.5deg) skewY(-2.5deg) translateZ(6px);
+    }
+  }
+
+  --animate-wave: wave-3d 3s ease-in-out;
+}
+
+@layer components {
+  h1 {
+    color: var(--color-primary);
+  }
+
+  h2 {
+    color: var(--color-secondary);
+  }
+
+  h3 {
+    color: var(--color-accent);
+  }
+
+  a {
+    color: var(--color-accent);
+  }
+
+  a:hover {
+    color: var(--color-accent/50%);
+  }
+
+  p {
+    color: var(--color-neutral);
+  }
+}
+
+.calendly-popup-content {
+  max-width: 650px !important;
+  margin: 0 auto !important;
+}

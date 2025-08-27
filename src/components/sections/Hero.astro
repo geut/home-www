@@ -1,0 +1,43 @@
+---
+import { slide } from "astro:transitions";
+import Navbar from '../Navbar';
+import AnimatedSection from '../AnimatedSection';
+import Logo from '../Logo';
+import { Iso } from '../Iso';
+import Tagline from '../Tagline';
+import ActionButtons from '../ActionButtons';
+const { navLinks, motto } = Astro.props;
+
+---
+
+<AnimatedSection ids="hero" styles='p-6' client:load transition:animate={slide({ duration: "0.1s" })}>
+  <Navbar navLinks={navLinks} client:load transition:persist/>
+  <div class="flex flex-col relative h-full overflow-auto overflow-x-hidden max-h-screen">
+    <div class="flex-1 flex items-center justify-center my-20 lg:my-14">
+      <div
+        class='flex md:flex-row gap-1 md:justify-between items-center w-full max-w-7xl '
+      >
+        <div 
+          class='z-10 text-primary w-[100%] md:w-[60%] flex flex-col gap-2 justify-around'>        
+          <div class="badge badge-outline badge-secondary dark:badge-info text-xs md:text-sm font-mono uppercase">
+            boutique <span class='font-mono'><abbr title="Everything JavaScript, Node.js, TS, bun...">JS</abbr></span> studio
+          </div>   
+          <div class='intro-text-box'>
+            <h2
+              class='bg-clip-text text-fill-transparent md:text-fill bg-linear-to-r/shorter from-secondary from-17% via-white via-80% to-secondary md:via-secondary break-keep font-mono uppercase leading-[4rem] md:leading-[6rem] xl:leading-[8rem] z-40 font-bold text-[2.8rem] md:text-[5rem] lg:text-[6rem] xl:text-[7rem] [text-shadow:0_1px_1px_rgba(0,0,0,0.05)]'
+            >
+              {motto}
+            </h2>
+          </div>
+          <Tagline client:load/>
+        </div>
+        <div class='absolute -right-55 md:-right-0 z-0 md:flex md:relative md:items-center md:justify-center'>
+          <Logo className="h-[400px] lg:h-[500px] mt-4" />
+        </div>
+      </div>
+    </div>
+    <div class="fixed bottom-10 left-0 right-0 z-10 flex-none">
+      <ActionButtons client:load />
+    </div>
+  </div>
+</AnimatedSection>
