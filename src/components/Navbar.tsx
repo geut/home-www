@@ -77,7 +77,7 @@ export default function Navbar({ navLinks }) {
   return (
     <nav className="relative top-0 left-0 w-full">
       <div className="flex justify-between items-center">
-        <div class="flex items-center gap-2 h-7">
+        <div className="flex items-center gap-2 h-7">
           <a href="/" className="logo inline-flex items-center text-md font-bold group">
             <Iso className="h-12 text-primary group-hover:-rotate-z-6 transition-all duration-300" full/> 
           </a>
