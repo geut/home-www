@@ -5,11 +5,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: (theme: any) => ({
-        dots: "url('src/assets/dots.svg')",
-        topo: "url('src/assets/topography.svg')" , 
-        curl: "url('src/assets/curl.svg')", 
-        curl2: "url('src/assets/curl-2.svg')",
-        'curl-dark': "url('src/assets/curl-dark.svg')",
+        curl: "url('/images/curl.svg')", 
+        'curl-dark': "url('/images/curl-dark.svg')",
       }),
       typography: (theme: any) => ({
         DEFAULT: {
