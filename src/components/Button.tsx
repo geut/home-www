@@ -14,13 +14,21 @@ export default function ButtonRight({
   variant = "default",
   icon,
   onClick,
+  dataCalNamespace,
+  dataCalLink,
+  dataCalConfig,
+  dataCalHideEventTypeDetails,
 }: {
   children: React.ReactNode
   className?: string
   href?: string
   variant?: "default" | "outline"
-  icon?: React.ComponentType<{ className?: string }>
+  icon?: React.ReactNode
   onClick?: () => void
+  dataCalNamespace?: string
+  dataCalLink?: string
+  dataCalConfig?: string
+  dataCalHideEventTypeDetails?: boolean
 }) {
   return (
     <button
@@ -38,10 +46,14 @@ export default function ButtonRight({
           onClick()
         }
       }}
+      data-cal-namespace={dataCalNamespace}
+      data-cal-link={dataCalLink}
+      data-cal-config={dataCalConfig}
+      data-cal-hide-event-type-details={dataCalHideEventTypeDetails}
     >
       <span>{children}</span>
       <div className="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-mobile-hover:w-5 group-mobile-hover:pl-1 group-mobile-hover:opacity-100 group-mobile-hover:translate-x-0">
-        {icon && React.createElement(icon)}
+        {icon}
         {!icon && (
           <svg
             width="15"

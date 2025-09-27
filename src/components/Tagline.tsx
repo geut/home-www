@@ -52,7 +52,7 @@ export default function Tagline() {
       >
         <TextEffect
           per="char"
-          className="z-40 prose m-3 font-mono uppercase leading-2 md:leading-7 md:text-2xl text-white dark:text-info text-justify text-xs text-pretty tracking-tighter"
+          className="z-40 prose font-mono uppercase leading-2 md:leading-7 md:text-2xl text-white dark:text-info text-justify text-xs text-pretty tracking-tighter"
           speedReveal={1.2}
           speedSegment={0.6}
           variants={highlightVariants}

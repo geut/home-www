@@ -161,7 +161,42 @@ html {
   }
 
   --animate-wave: wave-3d 3s ease-in-out;
+
+
+  @keyframes tilt {
+    0% 100% {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+      transform: rotateX(10deg) rotateY(-12deg);
+    }
+
+  }
+  --animate-tilt: tilt 5s ease-in-out infinite;
+
+
+  @keyframes diagonal {
+    0% {
+      transform: rotate(0deg);
+      transform-origin: center;
+    }
+    25% {
+      transform: rotate(6deg);
+    }
+    50% {
+      transform: rotate(-3deg)
+    }
+    75% {
+      transform: rotate(12deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  --animate-diagonal: diagonal 6s ease-out infinite;
 }
+
+
 
 @layer components {
   h1 {

@@ -1,26 +1,102 @@
+import { useEffect } from "react"
 import Button from "./Button"
 import Chat from "./icons/Chat"
+import Work from "./icons/Work"
+import Mail from "./icons/Mail"
+import { getCalApi } from "@calcom/embed-react"
 
-export default function ActionButtons() {
+const BookingButton = () => {
+  useEffect(() => {
+    ;(async function () {
+      try {
+        const cal = await getCalApi({ namespace: "30min" })
+
+        cal("ui", {
+          cssVarsPerTheme: { light: { "cal-brand": "#03005B" }, dark: { "cal-brand": "#091FFC" } },
+          hideEventTypeDetails: false,
+          layout: "month_view",
+        })
+      } catch (_) {
+        // use a mailto link with subject "Book a call"
+        window.location.href = "mailto:contact@geutstudio.com?subject=Book a call"
+      }
+    })()
+  }, [])
+
   return (
-    <div className="flex justify-center gap-x-3 md:gap-x-4 items-start font-inter px-4 md:px-0">
-      <Button
-        onClick={() => {
-          Calendly.initPopupWidget({ url: "https://calendly.com/diegogeut/30min" })
-        }}
-        className="text-sm h-8 md:text-sm md:h-10 lg:text-lg lg:h-12 px-3 md:px-4"
-        icon={Chat}
-      >
-        Book a call
-      </Button>
+    <Button
+      className="text-lg w-full font-bold flex items-center justify-center border-4 border-primary lg:text-2xl px-3 md:px-4 rounded-none"
+      icon={Chat({ className: "stroke-base-100 size-4 md:size-6" })}
+      dataCalNamespace="30min"
+      dataCalLink="diegogeut/30min"
+      dataCalHideEventTypeDetails={false}
+      dataCalConfig='{"layout": "month_view"}'
+    >
+      Book a call
+    </Button>
+  )
+}
 
-      <Button
-        variant="outline"
-        href="/how-we-work"
-        className="text-sm h-8 md:text-sm md:h-10 lg:text-lg lg:h-12 px-3 md:px-4"
-      >
-        Our Work
-      </Button>
+const ContactButton = () => {
+  return (
+    <Button
+      className="text-lg w-full font-bold flex items-center justify-center bg-base-100 border-4 border-primary lg:text-2xl px-3 md:px-4 rounded-none"
+      icon={Mail({ className: "stroke-primary size-4 md:size-6" })}
+      href="/contact"
+      variant="outline"
+    >
+      Contact
+    </Button>
+  )
+}
+
+const WorkButton = () => {
+  return (
+    <Button
+      icon={Work({ className: "stroke-primary size-4 md:size-6" })}
+      variant="outline"
+      href="/our-work"
+      className="text-lg w-full font-bold flex items-center justify-center bg-base-100 border-4 lg:text-2xl px-3 md:px-4 rounded-none"
+    >
+      Our Work
+    </Button>
+  )
+}
+
+const actionButtons: actionButtons = {
+  booking: {
+    component: BookingButton,
+  },
+  work: {
+    component: WorkButton,
+  },
+  contact: {
+    component: ContactButton,
+  },
+}
+
+export interface actionKeys {
+  booking: "booking"
+  work: "work"
+  contact: "contact"
+}
+
+export interface actionButtons {
+  [key: string]: {
+    component: () => React.ReactNode
+  }
+}
+
+export default function ActionButtons({ actions }: { actions: actionKeys[] }) {
+  console.log(actions)
+  console.log(actionButtons)
+  return (
+    // make them 2 giant buttons ocuppying the full width of the screen
+
+    <div className="flex w-full justify-center items-start font-mono">
+      {actions.map((action) => {
+        return actionButtons[action]?.component?.() || null
+      })}
     </div>
   )
 }

@@ -6,10 +6,8 @@ import { navigate } from "astro:transitions/client"
 
 export default function Navbar({ navLinks }) {
   const [isToggled, setIsToggled] = useState(false)
-  const subMenuLinkStyles =
-    "text-2xl font-bold transition-all duration-150"
-  const MenuLinkStyles =
-    "text-lg font-light transition-all duration-150"
+  const subMenuLinkStyles = "text-2xl font-bold transition-all duration-150"
+  const MenuLinkStyles = "text-lg font-light transition-all duration-150"
 
   const container = {
     hidden: { opacity: 0 },
@@ -34,56 +32,55 @@ export default function Navbar({ navLinks }) {
 
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { 
-      opacity: 1, 
-      x: 0, 
+    show: {
+      opacity: 1,
+      x: 0,
       y: 0,
       transition: {
         duration: 0.3,
         ease: "easeOut",
-      }
+      },
     },
-    exit: { 
-      opacity: 0, 
+    exit: {
+      opacity: 0,
       y: -10,
       transition: {
         duration: 0.2,
         ease: "easeIn",
-      }
+      },
     },
   }
 
   const backdrop = {
-    hidden: { 
+    hidden: {
       opacity: 0,
     },
-    show: { 
+    show: {
       opacity: 1,
       transition: {
         duration: 0.3,
         ease: "easeOut",
-      }
+      },
     },
-    exit: { 
+    exit: {
       opacity: 0,
       transition: {
         duration: 0.15,
         ease: "easeIn",
-      }
+      },
     },
   }
 
-
   return (
-    <nav className="relative top-0 left-0 w-full">
+    <nav className="fixed top-6 left-6 lg:left-10 lg:right-12 right-8 z-50">
       <div className="flex justify-between items-center">
-        <div className="flex items-center gap-2 h-7">
+        <div className="flex items-center gap-2 h-7 mt-4">
           <a href="/" className="logo inline-flex items-center text-md font-bold group">
-            <Iso className="h-12 text-primary group-hover:-rotate-z-6 transition-all duration-300" full/> 
+            <Iso className="h-12 text-primary animate-tilt transition-all duration-300" full />
           </a>
         </div>
         <motion.div
-          className={`flex flex-col gap-[3.5px] cursor-pointer z-50 ${
+          className={`flex flex-col gap-[3.5px] cursor-pointer z-50 mt-1 ${
             isToggled ? "fixed top-12 md:top-14 left-8 right-10 md:left-10" : ""
           }`}
           onClick={() => setIsToggled((prev) => !prev)}
@@ -99,10 +96,10 @@ export default function Navbar({ navLinks }) {
             className="w-[30px] h-[2px] will-change-transform"
           />
           <motion.span
-            animate={{ 
-              opacity: isToggled ? 0 : 1, 
-              width: isToggled ? 0 : 25, 
-              backgroundColor: isToggled ? "var(--color-accent)" : "var(--color-primary)" 
+            animate={{
+              opacity: isToggled ? 0 : 1,
+              width: isToggled ? 0 : 25,
+              backgroundColor: isToggled ? "var(--color-accent)" : "var(--color-primary)",
             }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
             className="w-[20px] h-[2px] will-change-transform origin-left"
@@ -122,17 +119,17 @@ export default function Navbar({ navLinks }) {
 
       <AnimatePresence mode="wait">
         {isToggled && (
-          <motion.div 
+          <motion.div
             className="fixed inset-4 flex flex-col justify-center items-center z-30 bg-primary/80 dark:bg-primary/50 backdrop-blur-xl will-change-transform"
             variants={backdrop}
             initial="hidden"
             animate="show"
             exit="exit"
           >
-            <motion.ul 
-              className="flex flex-col items-center gap-4 will-change-transform" 
-              variants={container} 
-              initial="hidden" 
+            <motion.ul
+              className="flex flex-col items-center gap-4 will-change-transform"
+              variants={container}
+              initial="hidden"
               animate="show"
               exit="exit"
             >

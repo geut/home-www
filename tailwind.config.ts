@@ -7,6 +7,7 @@ export default {
       backgroundImage: (theme: any) => ({
         curl: "url('/images/curl.svg')", 
         'curl-dark': "url('/images/curl-dark.svg')",
+        'curl-card': "url('/images/curl-card.svg')",
       }),
       typography: (theme: any) => ({
         DEFAULT: {
