@@ -33,7 +33,7 @@ const experience = [
   {
     id: 4,
     image: "",
-    alt: "Geut Open Source",
+    alt: "Geut OS",
     link: "https://github.com/geut",
     styles: "bg-white",
     work: ["P2P", "Libraries", "Fullstack", "Tooling"],
@@ -98,8 +98,8 @@ export default function Experience() {
 
   if (isLargeScreen) {
     return (
-      <div className="no-scrollbar overflow-hidden relative w-full h-full">
-        <div className="overflow-hidden gap-6 max-w-6xl mx-auto">
+      <div className="no-scrollbar overflow-hidden relative w-full ">
+        <div className="overflow-hidden gap-6 max-w-7xl mx-auto">
           {/* Navigation buttons */}
           <div className="flex ml-2 w-full items-center justify-start h-20">
             <button

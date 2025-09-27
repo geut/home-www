@@ -120,7 +120,7 @@ export default function Navbar({ navLinks }) {
       <AnimatePresence mode="wait">
         {isToggled && (
           <motion.div
-            className="fixed inset-4 flex flex-col justify-center items-center z-30 bg-primary/80 dark:bg-primary/50 backdrop-blur-xl will-change-transform"
+            className="fixed inset-4 font-inter flex flex-col justify-center items-center z-30 bg-primary/80 dark:bg-primary/50 backdrop-blur-xl will-change-transform"
             variants={backdrop}
             initial="hidden"
             animate="show"

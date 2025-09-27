@@ -88,12 +88,10 @@ export interface actionButtons {
 }
 
 export default function ActionButtons({ actions }: { actions: actionKeys[] }) {
-  console.log(actions)
-  console.log(actionButtons)
   return (
     // make them 2 giant buttons ocuppying the full width of the screen
 
-    <div className="flex w-full justify-center items-start font-mono">
+    <div className="flex w-full max-w-7xl mx-auto justify-center items-start font-mono">
       {actions.map((action) => {
         return actionButtons[action]?.component?.() || null
       })}
