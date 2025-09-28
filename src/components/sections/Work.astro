@@ -1,12 +1,12 @@
 ---
-import Navbar from '../Navbar';
-import AnimatedSection from '../AnimatedSection';
 import { slide } from "astro:transitions";
-import Github from '../icons/Github';
-const { navLinks} = Astro.props;
-import Experience from '../WorkProof';
-import ActionButtons from '../ActionButtons';
-const actionKeys = ['contact'];
+import AnimatedSection from "../AnimatedSection";
+import Navbar from "../Navbar";
+import Github from "../icons/Github";
+const { navLinks } = Astro.props;
+import ActionButtons from "../ActionButtons";
+import Experience from "../WorkProof";
+const actionKeys = ["contact"];
 ---
 
 <AnimatedSection ids="work" styles='p-4' client:load transition:animate={slide({ duration: "0.1s" })}>

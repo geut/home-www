@@ -1,12 +1,12 @@
 ---
 import { slide } from "astro:transitions";
-import Navbar from '../Navbar';
-import AnimatedSection from '../AnimatedSection';
-import Logo from '../Logo';
-import Tagline from '../Tagline';
-import ActionButtons from '../ActionButtons';
+import ActionButtons from "../ActionButtons";
+import AnimatedSection from "../AnimatedSection";
+import Logo from "../Logo";
+import Navbar from "../Navbar";
+import Tagline from "../Tagline";
 const { navLinks, motto } = Astro.props;
-const actionKeys = ['booking', 'work'];
+const actionKeys = ["booking", "work"];
 ---
 
 <AnimatedSection ids="hero" styles='p-4' client:load transition:animate={slide({ duration: "0.1s" })}>
