@@ -4,12 +4,12 @@ export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
 		extend: {
-			backgroundImage: (theme: any) => ({
+			backgroundImage: () => ({
 				curl: "url('/images/curl.svg')",
 				"curl-dark": "url('/images/curl-dark.svg')",
 				"curl-card": "url('/images/curl-card.svg')",
 			}),
-			typography: (theme: any) => ({
+			typography: () => ({
 				DEFAULT: {
 					css: {
 						pre: { color: null, backgroundColor: null },

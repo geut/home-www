@@ -130,9 +130,9 @@ const AnimationComponent: React.FC<{
 			</motion.span>
 		) : (
 			<motion.span className="inline-block whitespace-pre">
-				{segment.split("").map((char, charIndex) => (
+				{segment.split("").map((char) => (
 					<motion.span
-						key={`char-${charIndex}`}
+						key={`char-${char}`}
 						aria-hidden="true"
 						variants={variants}
 						className="inline-block whitespace-pre"

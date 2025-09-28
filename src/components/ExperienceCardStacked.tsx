@@ -6,6 +6,7 @@ import {
 } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { Iso } from "./Iso";
+import type { Experience } from "./WorkProof";
 import Check from "./icons/Check";
 import ExternalLink from "./icons/ExternalLink";
 
@@ -25,8 +26,8 @@ export default function ExperienceCardStacked({
 	link: string;
 	styles?: string;
 	work: string[];
-	cards: any[];
-	setCards: any;
+	cards: Experience[];
+	setCards: (cards: Experience[]) => void;
 }) {
 	const x = useMotionValue(0);
 	const controls = useAnimation();
@@ -46,7 +47,7 @@ export default function ExperienceCardStacked({
 		return offset;
 	});
 
-	const handleDragEnd = async (event: any, info: any) => {
+	const handleDragEnd = async () => {
 		if (Math.abs(x.get()) > 40) {
 			x.set(0);
 			await controls.start({
@@ -60,7 +61,10 @@ export default function ExperienceCardStacked({
 			// pop the card from the array and add it to the beginning
 			const card = cards.find((c) => c.id === id);
 			if (card) {
-				setCards((prev: any[]) => [card, ...prev.filter((c) => c.id !== id)]);
+				setCards((prev: Experience[]) => [
+					card,
+					...prev.filter((c) => c.id !== id),
+				]);
 			}
 			x.set(0);
 			await controls.start({
@@ -127,8 +131,8 @@ export default function ExperienceCardStacked({
 					</a>
 				</h3>
 				<ul className="list-none ">
-					{work.map((item, idx) => (
-						<li className="flex gap-2 items-center" key={`${item}-${idx}`}>
+					{work.map((item) => (
+						<li className="flex gap-2 items-center" key={`${item}`}>
 							<Check className="w-4 h-4 stroke-accent" />
 							<pre className="whitespace-pre-wrap font-mono uppercase">
 								{item}

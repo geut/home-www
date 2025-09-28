@@ -6,9 +6,9 @@ import {
 } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { Iso } from "./Iso";
+import type { Experience } from "./WorkProof";
 import Check from "./icons/Check";
 import ExternalLink from "./icons/ExternalLink";
-
 export default function ExperienceCardLarge({
 	id,
 	activeId,
@@ -28,8 +28,8 @@ export default function ExperienceCardLarge({
 	link: string;
 	styles?: string;
 	work: string[];
-	cards: any[];
-	setCards: any;
+	cards: Experience[];
+	setCards: (cards: Experience[]) => void;
 	move: number;
 }) {
 	const translateX = `-${move}%`;
@@ -89,7 +89,7 @@ export default function ExperienceCardLarge({
 					</h3>
 					<ul className="list-none">
 						{work.map((item, idx) => (
-							<li className="flex gap-2 items-center" key={`${item}-${idx}`}>
+							<li className="flex gap-2 items-center" key={`${item}`}>
 								<Check className="w-4 h-4 stroke-accent" />
 								<pre className="whitespace-pre-wrap font-mono uppercase">
 									{item}

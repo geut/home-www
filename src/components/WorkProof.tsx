@@ -5,6 +5,15 @@ import ExperienceCardStacked from "./ExperienceCardStacked";
 import LeftArrow from "./icons/LeftArrow";
 import RightArrow from "./icons/RightArrow";
 
+export interface Experience {
+	id: number;
+	image: string;
+	alt: string;
+	link: string;
+	styles: string;
+	work: string[];
+}
+
 const experience = [
 	{
 		id: 1,
@@ -65,9 +74,8 @@ export default function Experience() {
 		// activeId moves 2 by 2
 		setActiveId(activeId - 1 > 0 ? activeId - 1 : 0);
 
-		console.log(activeId);
 		setTimeout(() => setIsTransitioning(false), 300);
-	}, [isTransitioning]);
+	}, [isTransitioning, activeId]);
 
 	const goToNextSlide = useCallback(() => {
 		if (isTransitioning) return;
@@ -76,9 +84,9 @@ export default function Experience() {
 
 		// activeId moves 2 by 2
 		setActiveId(activeId + 1 < cards.length ? activeId + 1 : cards.length - 1);
-		console.log(activeId);
+
 		setTimeout(() => setIsTransitioning(false), 300);
-	}, [isTransitioning]);
+	}, [isTransitioning, activeId, cards]);
 
 	// Keyboard navigation
 	useEffect(() => {
