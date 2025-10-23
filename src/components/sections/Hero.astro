@@ -1,12 +1,14 @@
 ---
 import { slide } from "astro:transitions";
 import ActionButtons from "../ActionButtons";
+import { type actionKeys } from "../ActionButtons";
 import AnimatedSection from "../AnimatedSection";
 import Logo from "../Logo";
 import Navbar from "../Navbar";
 import Tagline from "../Tagline";
+
 const { navLinks, motto } = Astro.props;
-const actionKeys = ["booking", "work"];
+const actionButtonsKeys = ["booking", "work"] as unknown as actionKeys[];
 ---
 
 <AnimatedSection ids="hero" styles='p-4' client:load transition:animate={slide({ duration: "0.1s" })}>
@@ -28,17 +30,19 @@ const actionKeys = ["booking", "work"];
               {motto}
             </h2>
           </div>
-          <Tagline client:load/>
+          <div class=" lg:h-[120px]">
+            <Tagline client:load/>
+          </div>
         </div>
         <div class='absolute isolate -right-55 md:-right-0 z-0 md:flex md:relative md:items-center md:justify-center'>
-          <div class="hidden lg:block animate-tilt absolute inset-0 bg-radial-[at_50%_50%] from-base-100 via-primary/20 to-primary/80 to-90%  z-10 rounded-full blur-xl h-[400px] lg:h-[500px]" />
-          <div class="hidden lg:block -rotate-12 animate-diagonal absolute inset-0 bg-radial-[at_50%_50%] from-transparent via-secondary/20 dark:via-accent/20 to-90% z-10 rounded-full blur-2xl h-[400px] lg:h-[500px]" />
+          <!-- <div class="hidden lg:block animate-tilt absolute inset-0 bg-radial-[at_50%_50%] from-base-100 via-primary/20 to-primary/80 to-90%  z-10 rounded-full blur-xl h-[400px] lg:h-[500px]" />
+          <div class="hidden lg:block -rotate-12 animate-diagonal absolute inset-0 bg-radial-[at_50%_50%] from-transparent via-secondary/20 dark:via-accent/20 to-90% z-10 rounded-full blur-2xl h-[400px] lg:h-[500px]" /> -->
           <Logo className="z-20 h-[350px] lg:h-[450px] mt-4" />
         </div>
       </div>
     </div>
-    <div class="fixed bottom-4 left-4 right-4 z-10 flex-none p-2 bg-transparent">
-      <ActionButtons client:only="react" actions={actionKeys} />
+    <div class="fixed bottom-4 lg:bottom-8 left-4 right-4 z-10 flex-none p-2 bg-transparent">
+      <ActionButtons client:only="react" actions={actionButtonsKeys as actionKeys[]} />
     </div>
   </div>
 </AnimatedSection>

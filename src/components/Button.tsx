@@ -34,7 +34,7 @@ export default function ButtonRight({
 		<button
 			type="button"
 			className={twMerge(
-				"group relative inline-flex h-12 items-center justify-center overflow-hidden px-6 font-medium rounded-full cursor-pointer",
+				"group relative inline-flex h-8 lg:h-12 items-center justify-center overflow-hidden px-6 font-medium rounded-full cursor-pointer",
 				buttonVariants[variant],
 				className,
 			)}

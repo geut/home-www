@@ -35,7 +35,6 @@ export default function Tagline() {
 	const [showWave, setShowWave] = useState(false);
 
 	const handleAnimationComplete = () => {
-		console.log("Animation complete");
 		setShowWave(true);
 	};
 

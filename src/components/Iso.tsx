@@ -5,7 +5,7 @@ export function Iso(props: { full?: boolean; className?: string }) {
 			<svg
 				{...rest}
 				viewBox="0 0 708 371"
-				fill="none"
+				fill="currentColor"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<title>Geut is a JS Boutique Studio"</title>

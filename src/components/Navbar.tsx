@@ -2,12 +2,11 @@ import { navigate } from "astro:transitions/client";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { Iso } from "./Iso";
-import Logo from "./Logo";
 
-export default function Navbar({ navLinks }) {
+export default function Navbar({
+	navLinks,
+}: { navLinks: { name: string; href: string }[] }) {
 	const [isToggled, setIsToggled] = useState(false);
-	const subMenuLinkStyles = "text-2xl font-bold transition-all duration-150";
-	const MenuLinkStyles = "text-lg font-light transition-all duration-150";
 
 	const container = {
 		hidden: { opacity: 0 },
@@ -149,11 +148,17 @@ export default function Navbar({ navLinks }) {
 								<motion.li
 									variants={item}
 									key={link.name}
-									className="will-change-transform"
+									className="group flex items-center gap-4 text-2xl lg:text-4xl"
 								>
+									<span
+										aria-hidden="true"
+										className="group-hover:text-white group-focus:text-white text-accent -mt-1"
+									>
+										▸
+									</span>
 									<a
 										href={link.href}
-										className={subMenuLinkStyles}
+										className=" group-hover:text-white group-focus:text-white font-extrabold tracking-wider uppercase transition-all duration-250"
 										onClick={(e) => {
 											e.preventDefault();
 											navigate(link.href).then(() => {

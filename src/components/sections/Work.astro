@@ -4,15 +4,16 @@ import AnimatedSection from "../AnimatedSection";
 import Navbar from "../Navbar";
 
 const { navLinks } = Astro.props;
-import ActionButtons from "../ActionButtons";
+import ActionButtons, { type actionKeys } from "../ActionButtons";
 import Experience from "../WorkProof";
-const actionKeys = ["contact"];
+
+const actionButtonsKeys = ["team"] as unknown as actionKeys[];
 ---
 
 <AnimatedSection ids="work" styles='p-4' client:load transition:animate={slide({ duration: "0.1s" })}>
   <Navbar navLinks={navLinks} client:load transition:persist/>
   <div class="flex flex-col relative h-full overflow-hidden max-w-7xl mx-auto">
-    <div class="flex-1 flex items-center justify-center my-18">
+    <div class="flex-1 flex items-center justify-center mt-18">
       <div class='introduction w-full h-full flex flex-1 flex-col'>
         <div class='intro-text-box '>
           <h2
@@ -21,14 +22,13 @@ const actionKeys = ["contact"];
           Latest Work
           </h2>
         </div>
-        <div class='h-full flex flex-1 mx-4 lg:mx-6 justify-center items-center'>
+        <div class='flex flex-1 mx-4 lg:mx-6 justify-center items-center'>
           <Experience client:only="react" />
         </div>
-        
       </div>
     </div>
-    <div class="fixed bottom-4 left-4 right-4 z-10 flex-none p-2 bg-transparent">
-      <ActionButtons client:only="react" actions={actionKeys} />
+    <div class="fixed lg:relative bottom-4 left-4 right-4 z-10 flex-none p-2 bg-transparent">
+      <ActionButtons client:only="react" actions={actionButtonsKeys as actionKeys[]} />
     </div>
   </div>  
 </AnimatedSection>

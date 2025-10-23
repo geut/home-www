@@ -61,10 +61,7 @@ export default function ExperienceCardStacked({
 			// pop the card from the array and add it to the beginning
 			const card = cards.find((c) => c.id === id);
 			if (card) {
-				setCards((prev: Experience[]) => [
-					card,
-					...prev.filter((c) => c.id !== id),
-				]);
+				setCards([card, ...cards.filter((c) => c.id !== id)]);
 			}
 			x.set(0);
 			await controls.start({
@@ -82,7 +79,7 @@ export default function ExperienceCardStacked({
 	return (
 		<motion.div
 			id={`slide-${id}`}
-			className="bg-primary/70 scale-95 backdrop-blur-xl mx-2 w-full card border-primary border-4 rounded-lg hover:cursor-grab active:cursor-grabbing h-[26rem] origin-bottom shadow-xl"
+			className="bg-primary/70 scale-95 backdrop-blur-xl mx-2 w-full card border-primary border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-[23rem] lg:h-[26rem] origin-bottom shadow-xl"
 			style={{
 				gridRow: 1,
 				gridColumn: 1,
@@ -104,22 +101,22 @@ export default function ExperienceCardStacked({
 						alt={alt}
 						style={{ objectFit: "contain" }}
 						className={twMerge(
-							"object-contain rounded-lg object-center w-full h-48 p-12",
+							"object-contain rounded-lg object-center w-full h-40 lg:h-48 p-12",
 							styles,
 						)}
 					/>
 				) : (
 					<Iso
 						className={twMerge(
-							"object-contain w-full rounded-lg h-48 p-12 text-primary ",
+							"object-contain w-full rounded-lg h-40 lg:h-48 p-12 text-primary ",
 							styles,
 						)}
 					/>
 				)}
 			</figure>
 
-			<div className="card-body bg-curl-card bg-cover bg-right-top shrink-0 h-56 flex-1 flex flex-col rounded-b-lg justify-start lg:px-10 text-primary-content">
-				<h3 className="card-title h-12 font-mono tracking-wide w-full text-2xl lg:text-4xl mb-2 group cursor-pointer">
+			<div className="card-body bg-curl-card bg-cover bg-right-top shrink-0 h-52 lg:h-56 flex-1 flex flex-col rounded-b-lg justify-start lg:px-10 text-primary-content">
+				<h3 className="card-title h-10 lg:h-12 font-mono tracking-wide w-full text-2xl lg:text-4xl mb-2 group cursor-pointer">
 					<a
 						href={link}
 						target="_blank"

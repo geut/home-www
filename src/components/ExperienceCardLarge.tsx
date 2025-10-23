@@ -38,7 +38,7 @@ export default function ExperienceCardLarge({
 	return (
 		<motion.div
 			id={`slide-${id}`}
-			className="relative mx-2 w-[500px] bg-primary/70 backdrop-blur-xl rounded-tr-none card shrink-0 hover:cursor-grab active:cursor-grabbing h-[26rem]  origin-bottom shadow-xl 
+			className="relative rounded-2xl mx-2 w-[500px] bg-primary/70 backdrop-blur-xl rounded-tr-none card shrink-0 hover:cursor-grab active:cursor-grabbing h-[26rem]  origin-bottom shadow-xl 
       after:content-none after:absolute after:left-[-3em] after:border-primary/50 after:border-4 after:rounded-none after:rotate-6"
 			style={{
 				transition: "0.150s transform",
