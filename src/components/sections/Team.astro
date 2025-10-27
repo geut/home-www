@@ -1,33 +1,33 @@
 ---
-import { slide } from "astro:transitions";
-import AnimatedSection from "../AnimatedSection";
-import Navbar from "../Navbar";
+import { slide } from "astro:transitions"
+import AnimatedSection from "../AnimatedSection"
+import Navbar from "../Navbar"
 
-const { navLinks } = Astro.props;
-import ActionButtons, { type actionKeys } from "../ActionButtons";
-import TeamCard from "../TeamCard";
+const { navLinks } = Astro.props
+import ActionButtons, { type actionKeys } from "../ActionButtons"
+import TeamCard from "../TeamCard"
 
-const actionButtonsKeys = ["contact"] as unknown as actionKeys[];
+const actionButtonsKeys = ["contact"] as unknown as actionKeys[]
 ---
 
 <AnimatedSection ids="work" styles='p-4' client:load transition:animate={slide({ duration: "0.1s" })}>
   <Navbar navLinks={navLinks} client:load transition:persist/>
   <div class="flex flex-col relative h-full overflow-hidden max-w-7xl mx-auto">
     <div class="flex-1 flex items-center justify-center mt-18">
-      <div class='introduction w-full h-full flex flex-1 flex-col'>
+      <div class='introduction mx-6 lg:mx-10 w-full h-full flex flex-1 flex-col'>
         <div class='intro-text-box '>
           <h2
-            class='intro-text mx-4 lg:mx-6 inline-flex h2 leading-[4rem] md:leading-[8rem] font-bold text-[3rem] md:text-[4rem] lg:text-[6rem] xl:text-[7rem]'
+            class='intro-text inline-flex h2 leading-[4rem] md:leading-[8rem] font-bold'
           >
           <span class="hidden md:block">Founding Team</span><span class="block md:hidden">About Us</span> 
           </h2>
         </div>
-        <div class=' flex flex-1 px-4 lg:mx-6 justify-center items-center'>
+        <div class='flex flex-1 justify-center'>
           <TeamCard client:only="react"/>
         </div>
       </div>
     </div>
-    <div class="fixed lg:relative bottom-4 left-4 right-4 z-50 flex-none p-2 bg-transparent">
+    <div class="fixed bottom-8 lg:bottom-12 left-6 right-6 z-10 flex-none bg-transparent">
       <ActionButtons client:only="react" actions={actionButtonsKeys} />
     </div>
   </div>  

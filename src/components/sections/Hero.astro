@@ -1,48 +1,40 @@
 ---
-import { slide } from "astro:transitions";
-import ActionButtons from "../ActionButtons";
-import { type actionKeys } from "../ActionButtons";
-import AnimatedSection from "../AnimatedSection";
-import Logo from "../Logo";
-import Navbar from "../Navbar";
-import Tagline from "../Tagline";
+import { slide } from "astro:transitions"
+import ActionButtons from "../ActionButtons"
+import { type actionKeys } from "../ActionButtons"
+import AnimatedSection from "../AnimatedSection"
+import Logo from "../Logo"
+import Navbar from "../Navbar"
+import Tagline from "../Tagline"
 
-const { navLinks, motto } = Astro.props;
-const actionButtonsKeys = ["booking", "work"] as unknown as actionKeys[];
+const { navLinks, motto } = Astro.props
+const actionButtonsKeys = ["booking", "work"] as unknown as actionKeys[]
 ---
 
 <AnimatedSection ids="hero" styles='p-4' client:load transition:animate={slide({ duration: "0.1s" })}>
-  <Navbar navLinks={navLinks} client:load transition:persist/>
+  <Navbar navLinks={navLinks} client:only="react" transition:persist/>
   <div class="flex flex-col relative h-full overflow-auto overflow-x-hidden max-w-screen mx-auto">
     <div class="flex-1 flex items-center justify-center my-10 lg:my-14">
-      <div
-        class="flex -mt-6 md:flex-row gap-1 md:justify-between items-center w-full max-w-7xl"
-      >
-        <div 
-          class='z-10 mx-4 text-primary w-[100%] md:w-[60%] flex flex-col gap-2 justify-around'>        
-          <div class="lg:ml-2 badge badge-outline badge-secondary dark:badge-info text-xs md:text-sm font-mono uppercase">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center w-full max-w-7xl px-6 lg:px-10">
+        <!-- Left: Content -->
+        <div class='z-10 flex flex-col gap-6 lg:gap-10'>        
+          <div class="badge badge-outline badge-secondary dark:badge-info text-xs md:text-sm font-mono uppercase">
             boutique <span class='font-mono'><abbr title="Everything JavaScript, Node.js, TS, bun...">JS</abbr></span> studio
           </div>   
-          <div class='intro-text-box'>
-            <h2
-              class='bg-clip-text text-fill-transparent md:text-fill bg-linear-to-r/shorter from-secondary from-17% via-white via-80% to-secondary md:via-secondary break-keep font-mono uppercase leading-[4rem] md:leading-[6rem] xl:leading-[8rem] z-40 font-bold text-[2.8rem] md:text-[5rem] lg:text-[6rem] xl:text-[7rem] [text-shadow:0_1px_1px_rgba(0,0,0,0.05)]'
-            >
-              {motto}
-            </h2>
-          </div>
-          <div class=" lg:h-[120px]">
-            <Tagline client:load/>
-          </div>
+          <h2 class='bg-clip-text text-fill-transparent md:text-fill bg-linear-to-r/shorter from-secondary from-17% via-white via-80% to-secondary md:via-secondary font-mono uppercase leading-tight lg:leading-tight font-bold text-5xl md:text-6xl lg:text-7xl xl:text-8xl'>
+            {motto}
+          </h2>
+          <Tagline client:load/>
         </div>
-        <div class='absolute isolate -right-55 md:-right-0 z-0 md:flex md:relative md:items-center md:justify-center'>
-          <!-- <div class="hidden lg:block animate-tilt absolute inset-0 bg-radial-[at_50%_50%] from-base-100 via-primary/20 to-primary/80 to-90%  z-10 rounded-full blur-xl h-[400px] lg:h-[500px]" />
-          <div class="hidden lg:block -rotate-12 animate-diagonal absolute inset-0 bg-radial-[at_50%_50%] from-transparent via-secondary/20 dark:via-accent/20 to-90% z-10 rounded-full blur-2xl h-[400px] lg:h-[500px]" /> -->
-          <Logo className="z-20 h-[350px] lg:h-[450px] mt-4" />
+        
+        <!-- Right: Logo -->
+        <div class='flex lg:justify-end items-center absolute -right-45 lg:right-0 lg:relative'>
+          <Logo className="h-[300px] md:h-[400px] lg:h-[500px]" />
         </div>
       </div>
     </div>
-    <div class="fixed bottom-4 lg:bottom-8 left-4 right-4 z-10 flex-none p-2 bg-transparent">
-      <ActionButtons client:only="react" actions={actionButtonsKeys as actionKeys[]} />
+    <div class="fixed bottom-8 lg:bottom-12 left-6 right-6 z-10 flex-none  bg-transparent">
+      <ActionButtons client:load actions={actionButtonsKeys as actionKeys[]} />
     </div>
   </div>
 </AnimatedSection>
