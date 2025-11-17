@@ -1,26 +1,29 @@
-import { motion, useMotionValue, useTransform } from "framer-motion"
+import {
+  motion,
+  useAnimation,
+  useMotionValue,
+  useTransform,
+} from "framer-motion"
 
 export default function StackedCard({
-  pos,
+  id,
   children,
-  cards,
-  setCards,
+  isFront = false,
   dragLimit = 40,
   opacityLimit = 120,
   handleDragEndCb,
   styleProps,
 }: {
-  pos: number
+  id: number
   children: React.ReactNode
-  cards: React.ReactNode[]
-  setCards: (cards: React.ReactNode[]) => void
+  isFront?: boolean
   dragLimit?: number
   opacityLimit?: number
-  handleDragEndCb?: () => void
+  handleDragEndCb?: (cardId: number) => void
   styleProps?: React.CSSProperties
 }) {
   const x = useMotionValue(0)
-  const isFront = pos === cards.length - 1
+  const controls = useAnimation()
 
   const opacity = useTransform(x, [-opacityLimit, 0, opacityLimit], [0, 1, 0])
 
@@ -30,28 +33,48 @@ export default function StackedCard({
     return zoom
   })
 
-  const handleDragEnd = () => {
-    if (Math.abs(x.get()) < dragLimit) return
+  const position = useTransform(() => {
+    const offset = isFront ? 0 : -24
+    return offset
+  })
 
-    // cycle through the cards
-    const card = cards[pos]
-    console.log(card, pos)
-    if (card) {
-      setCards([card, ...cards.filter((c, idx) => idx !== pos)])
+  const handleDragEnd = async () => {
+    if (Math.abs(x.get()) > dragLimit) {
+      x.set(0)
+      await controls.start({
+        y: -56,
+        x: 0,
+        opacity: 0,
+        transition: {
+          duration: 0,
+        },
+      })
+      // Call the callback with the card id so parent can handle reordering
+      handleDragEndCb?.(id)
+      x.set(0)
+      await controls.start({
+        y: -56,
+        scale: 0.88,
+        opacity: 1,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut",
+        },
+      })
     }
-    handleDragEndCb?.()
   }
 
   return (
     <motion.div
-      id={`slide-${pos}`}
-      className="m-2 border-2 border-info border-offset-2 odd:rotate-3 md:odd:rotate-1 even:-rotate-3 md:even:-rotate-1 rounded-2xl bg-primary/70 backdrop-blur-sm p-4 font-inter md:max-w-4xl cursor-grab active:cursor-grabbing touch-manipulation shadow-4"
+      id={`slide-${id}`}
+      className="bg-primary/70 scale-95 backdrop-blur-xl mx-2 w-full lg:max-w-2xl card md:card-side border-primary border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-[26rem] lg:[34rem] origin-bottom shadow-xl cursor-grab touch-manipulation"
       drag="x"
       style={{
         gridRow: 1,
         gridColumn: 1,
         transition: "0.150s transform",
         x,
+        y: position,
         opacity,
         scale,
         ...styleProps,

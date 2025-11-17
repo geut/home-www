@@ -1,5 +1,6 @@
 import { getCalApi } from "@calcom/embed-react"
 import { useEffect } from "react"
+import React from "react"
 import Button from "./Button"
 import Chat from "./icons/Chat"
 import Mail from "./icons/Mail"
@@ -30,8 +31,8 @@ const BookingButton = () => {
 
   return (
     <Button
-      className="text-sm md:text-xl lg:text-3xl w-full font-normal bg-primary/80 uppercase flex items-center justify-center backdrop-blur-sm rounded-r-none"
-      icon={Chat({ className: "stroke-base-100 size-4 md:size-6" })}
+      className="text-sm md:text-xl lg:text-3xl w-full font-normal bg-primary/80 uppercase flex items-center justify-center backdrop-blur-sm rounded-r-none tracking-wide"
+      icon={Chat({ className: "fill-primary-content size-4 md:size-6" })}
       dataCalNamespace="30min"
       dataCalLink="diegogeut/30min"
       dataCalHideEventTypeDetails={false}
@@ -45,8 +46,8 @@ const BookingButton = () => {
 const ContactButton = () => {
   return (
     <Button
-      className="text-sm md:text-xl lg:text-3xl w-full font-normal uppercase flex items-center justify-center backdrop-blur-sm border-0 border-primary"
-      icon={Mail({ className: "stroke-primary size-4 md:size-6" })}
+      className="text-sm md:text-xl lg:text-3xl w-full font-normal uppercase flex items-center justify-center backdrop-blur-sm border-0 border-primary tracking-wide"
+      icon={Mail({ className: "fill-primary size-4 md:size-6" })}
       href="/contact"
       variant="outline"
     >
@@ -58,10 +59,10 @@ const ContactButton = () => {
 const WorkButton = () => {
   return (
     <Button
-      icon={Work({ className: "stroke-primary size-4 md:size-6" })}
+      icon={Work({ className: "fill-primary size-4 md:size-6" })}
       variant="outline"
       href="/our-work"
-      className="text-sm md:text-xl lg:text-3xl w-full font-normal uppercase flex items-center justify-center backdrop-blur-sm border-0"
+      className="text-sm md:text-xl lg:text-3xl w-full font-normal uppercase flex items-center justify-center backdrop-blur-sm border-0 tracking-wide"
     >
       Work
     </Button>
@@ -71,10 +72,10 @@ const WorkButton = () => {
 const TeamButton = () => {
   return (
     <Button
-      icon={Team({ className: "stroke-primary size-4 md:size-6" })}
+      icon={Team({ className: "fill-primary size-4 md:size-6" })}
       variant="outline"
       href="/team"
-      className="text-sm md:text-xl lg:text-3xl w-full font-normal uppercase flex items-center justify-center backdrop-blur-sm border-0"
+      className="text-sm md:text-xl lg:text-3xl w-full font-normal uppercase flex items-center justify-center backdrop-blur-sm border-0 tracking-wide"
     >
       Team
     </Button>
@@ -113,7 +114,12 @@ export default function ActionButtons({ actions }: { actions: actionKeys[] }) {
   return (
     <div className="flex w-full rounded-full border border-primary max-w-xl mx-auto justify-center items-stretch font-mono shadow-lg">
       {actions.map((action) => {
-        return actionButtons[action]?.component?.() || null
+        const key =
+          typeof action === "string" ? action : Object.values(action)[0]
+        const ButtonComponent = actionButtons[key]?.component
+        return ButtonComponent ? (
+          <React.Fragment key={key}>{ButtonComponent()}</React.Fragment>
+        ) : null
       })}
     </div>
   )

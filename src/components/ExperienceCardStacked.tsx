@@ -79,7 +79,7 @@ export default function ExperienceCardStacked({
   return (
     <motion.div
       id={`slide-${id}`}
-      className="bg-primary/70 scale-95 backdrop-blur-xl mx-2 w-full card border-primary border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-[23rem] lg:h-[26rem] origin-bottom shadow-xl"
+      className=" bg-primary/70 gpu-accelerate scale-95 backdrop-blur-xl mx-2 w-full card border-primary border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-[26rem] lg:h-[28rem] origin-bottom shadow-xl"
       style={{
         gridRow: 1,
         gridColumn: 1,
@@ -116,7 +116,7 @@ export default function ExperienceCardStacked({
       </figure>
 
       <div className="card-body bg-curl-card bg-cover bg-right-top shrink-0 h-52 lg:h-56 flex-1 flex flex-col rounded-b-lg justify-start lg:px-10 text-primary-content">
-        <h3 className="card-title h-10 lg:h-12 font-mono tracking-wide w-full text-2xl lg:text-4xl mb-2 group cursor-pointer">
+        <h3 className="card-title h-10 lg:h-12 font-mono tracking-wide w-full text-3xl mb-2 group cursor-pointer">
           <a
             href={link}
             target="_blank"

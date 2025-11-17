@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
 import { Iso } from "./Iso"
 import { WordRotate } from "./RotateWord"
+// get current navigation path, the astro way
 
 export default function Navbar({
   navLinks,
@@ -151,7 +152,7 @@ export default function Navbar({
                 >
                   <button
                     type="button"
-                    className="font-extrabold tracking-wider uppercase"
+                    className="tracking-wider uppercase"
                     onClick={(e) => {
                       e.preventDefault()
                     }}
@@ -168,7 +169,7 @@ export default function Navbar({
                           navigate(link.href).then(() => {
                             setIsToggled(false)
                           })
-                        }, 250)
+                        }, 200)
                       }}
                     />
                   </button>

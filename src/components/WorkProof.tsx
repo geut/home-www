@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react"
 
 import ExperienceCardLarge from "./ExperienceCardLarge"
 import ExperienceCardStacked from "./ExperienceCardStacked"
+import NeuButton from "./NeuButton"
 import LeftArrow from "./icons/LeftArrow"
 import RightArrow from "./icons/RightArrow"
 
@@ -109,23 +110,21 @@ export default function Experience() {
       <div className="no-scrollbar overflow-hidden relative w-full ">
         <div className="overflow-hidden gap-6 max-w-7xl mx-auto">
           {/* Navigation buttons */}
-          <div className="flex ml-2 w-full items-center justify-start h-20">
-            <button
-              type="button"
-              onClick={goToPrevSlide}
-              className="z-20 mr-6 btn dark:fill-info hover:fill-base-100 hover:btn-primary transition-all duration-200 disabled:opacity-50"
+          <div className="flex ml-2 w-full items-center justify-start h-20 gap-6 ">
+            <NeuButton
               aria-label="Previous slide"
+              onClick={goToPrevSlide}
+              className="bg-primary/70 rounded-xl backdrop-blur-2xl cursor-pointer"
             >
-              <LeftArrow className="w-4 h-4 stroke-2" />
-            </button>
-            <button
-              type="button"
-              onClick={goToNextSlide}
-              className=" z-20 btn dark:fill-info hover:fill-base-100 hover:btn-primary transition-all duration-200 disabled:opacity-50"
+              <LeftArrow className="size-6 stroke-2 dark:fill-info" />
+            </NeuButton>
+            <NeuButton
               aria-label="Next slide"
+              onClick={goToNextSlide}
+              className="bg-primary/70 rounded-xl backdrop-blur-2xl cursor-pointer"
             >
-              <RightArrow className="w-4 h-4 stroke-2" />
-            </button>
+              <RightArrow className="size-6 stroke-2 dark:fill-info" />
+            </NeuButton>
           </div>
           <div className="flex gap-6">
             {experience.map((item, index) => (
@@ -153,7 +152,7 @@ export default function Experience() {
     )
   }
   return (
-    <div className="relative w-full md:max-w-xl">
+    <div className="relative w-full md:max-w-xl h-full flex flex-1 items-center">
       <ul className="bg-transparent w-full grid place-items-center">
         {cards.map((item) => (
           <ExperienceCardStacked

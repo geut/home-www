@@ -49,7 +49,7 @@ export default function ExperienceCardLarge({
       }}
     >
       <div className="flex absolute -top-8 right-0">
-        <div className="h-8 w-40 bg-primary/80 border-2 border-b-0 z-20 border-primary/10  font-mono text-2xl text-accent px-2 rounded-t-lg" />
+        <div className="h-8 w-40 bg-primary/70 dark:bg-secondary border-2 border-b-0 z-20 border-primary/20  font-mono text-2xl text-accent px-2 rounded-t-lg" />
       </div>
 
       {/* <div className="absolute inset-0 bg-primary/70 rounded-none rotate-6 border-primary/50 border-4" /> */}

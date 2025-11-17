@@ -85,7 +85,7 @@ export function WordRotate({
     // biome-ignore lint/a11y/useSemanticElements: <explanation>
     <div
       role="button"
-      className="overflow-hidden py-2 inline-block cursor-pointer touch-manipulation focus:outline-accent focus:outline-2"
+      className="overflow-hidden py-2 inline-block cursor-pointer touch-manipulation "
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleInteraction}
