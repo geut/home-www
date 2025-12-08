@@ -1,6 +1,6 @@
 import { navigate } from "astro:transitions/client"
 import { AnimatePresence, motion } from "framer-motion"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Iso } from "./Iso"
 import { WordRotate } from "./RotateWord"
 // get current navigation path, the astro way
@@ -74,11 +74,11 @@ export default function Navbar({
 
   return (
     <nav className="fixed top-8 left-0 lg:top-12 right-0 z-50 px-8 lg:px-12">
-      <div className="flex justify-between items-center">
-        <div className="flex items-center h-8 lg:h-10">
+      <div className="grid grid-cols-2 items-center">
+        <div className="flex items-center h-8 lg:h-10 w-2/4">
           <a
             href="/"
-            className="logo inline-flex items-center text-md font-bold group"
+            className="logo inline-flex items-center text-md font-bold group cursor-pointer"
           >
             <Iso
               className="h-12 lg:h-16 text-primary animate-tilt transition-all duration-300"
@@ -86,8 +86,9 @@ export default function Navbar({
             />
           </a>
         </div>
+
         <motion.div
-          className="flex flex-col gap-1 cursor-pointer z-50 mr-3"
+          className="flex flex-col gap-1 cursor-pointer z-50 mr-3 justify-self-end"
           onClick={() => setIsToggled((prev) => !prev)}
         >
           <motion.span

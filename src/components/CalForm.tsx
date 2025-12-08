@@ -19,7 +19,7 @@ export default function CalendlyForm() {
   return (
     <div
       key="cal-form"
-      className="w-full bg-base-300 lg:bg-transparent h-[50vh] md:h-[80vh] lg:h-full overflow-hidden rounded-lg border border-info lg:border-none"
+      className=" w-full bg-base-300 lg:bg-transparent h-full no-scrollbar overflow-hidden rounded-lg border border-info lg:border-none"
       style={{
         position: "relative",
         minHeight: "400px",

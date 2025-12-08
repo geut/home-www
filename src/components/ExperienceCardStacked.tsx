@@ -79,7 +79,7 @@ export default function ExperienceCardStacked({
   return (
     <motion.div
       id={`slide-${id}`}
-      className=" bg-primary/70 gpu-accelerate scale-95 backdrop-blur-xl mx-2 w-full card border-primary border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-[26rem] lg:h-[28rem] origin-bottom shadow-xl"
+      className="bg-primary/70 gpu-accelerate scale-95 backdrop-blur-xl w-full card border-primary border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-full max-h-[40rem] lg:h-[30rem] lg:max-h-none origin-bottom shadow-xl"
       style={{
         gridRow: 1,
         gridColumn: 1,
@@ -87,6 +87,7 @@ export default function ExperienceCardStacked({
         opacity,
         y: position,
         scale,
+        height: "100%",
         transition: "0.150s transform",
       }}
       drag="x"
@@ -94,49 +95,60 @@ export default function ExperienceCardStacked({
       dragConstraints={{ left: 0, right: 0 }}
       onDragEnd={handleDragEnd}
     >
-      <figure className="shrink p-4">
+      <figure className="rounded-t-xl h-full max-h-80">
         {image ? (
           <img
             src={image}
             alt={alt}
-            style={{ objectFit: "contain" }}
             className={twMerge(
-              "object-contain rounded-lg object-center w-full h-40 lg:h-48 p-12",
+              "object-contain w-full h-full max-h-80 p-12 mask-alpha mask-b-from-primary mask-b-from-85% mask-b-to-transparent",
               styles,
             )}
           />
         ) : (
           <Iso
             className={twMerge(
-              "object-contain w-full rounded-lg h-40 lg:h-48 p-12 text-primary ",
+              "object-contain w-full h-full max-h-80 p-12 text-primary mask-alpha mask-b-from-primary mask-b-from-85% mask-b-to-transparent",
               styles,
             )}
           />
         )}
       </figure>
 
-      <div className="card-body bg-curl-card bg-cover bg-right-top shrink-0 h-52 lg:h-56 flex-1 flex flex-col rounded-b-lg justify-start lg:px-10 text-primary-content">
-        <h3 className="card-title h-10 lg:h-12 font-mono tracking-wide w-full text-3xl mb-2 group cursor-pointer">
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 justify-between w-full"
-          >
-            {alt}
-            <ExternalLink className="size-8 transition-all ease-in transition-discrete duration-150 group-hover:size-10" />
-          </a>
-        </h3>
-        <ul className="list-none ">
-          {work.map((item) => (
-            <li className="flex gap-2 items-center" key={`${item}`}>
-              <Check className="w-4 h-4 stroke-accent" />
-              <pre className="whitespace-pre-wrap font-mono uppercase">
-                {item}
-              </pre>
-            </li>
-          ))}
-        </ul>
+      <div className="card-body py-1 lg:py-2 bg-curl-card bg-cover h-full min-h-48 flex-1 flex flex-col rounded-b-lg justify-start lg:px-10 text-primary-content">
+        <div className="flex flex-col -gap-2">
+          <div className="flex items-center text-[10px] lg:text-xs text-accent/70 font-mono uppercase tracking-wide">
+            <span className="mr-1 -mt-[1px] font-bold font-mono">✛</span>client
+            id
+          </div>
+          <h3 className="card-title h-10 lg:h-12 font-mono tracking-wide w-full text-3xl mb-2 group cursor-pointer">
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 justify-between w-full"
+            >
+              {alt}
+              <ExternalLink className="size-8 transition-all ease-in transition-discrete duration-150 group-hover:size-10" />
+            </a>
+          </h3>
+        </div>
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center text-[10px] lg:text-xs text-accent/70 font-mono uppercase tracking-wide">
+            <span className="mr-1 -mt-[1px] font-bold font-mono">✛</span>work
+            done
+          </div>
+          <ul className="list-none ">
+            {work.map((item) => (
+              <li className="flex gap-2 items-center" key={`${item}`}>
+                <Check className="size-4 text-accent" />
+                <pre className="whitespace-pre-wrap font-mono uppercase text-sm">
+                  {item}
+                </pre>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </motion.div>
   )

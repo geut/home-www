@@ -37,13 +37,13 @@ export default function Tagline() {
       <div className="inline-block">
         <TextEffect
           per="line"
-          className="z-40 prose font-mono font-thin p-2 uppercase md:text-2xl text-secondary dark:text-info text-xl text-center text-pretty tracking-wider"
+          className="z-40 prose font-mono font-thin p-2 uppercase md:text-2xl text-secondary dark:text-info text-sm md:text-center text-pretty tracking-wider"
           speedReveal={1.8}
           speedSegment={1.8}
           delay={0.3}
           preset="fade"
         >
-          Backend to Browser
+          Boutique JavaScript Studio
         </TextEffect>
         {/* Animated border with width */}
         <motion.div

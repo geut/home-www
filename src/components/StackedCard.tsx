@@ -19,7 +19,10 @@ export default function StackedCard({
   isFront?: boolean
   dragLimit?: number
   opacityLimit?: number
-  handleDragEndCb?: (cardId: number) => void
+  handleDragEndCb?: (
+    cardId: number,
+    draggingDirection: "right" | "left" | null,
+  ) => void
   styleProps?: React.CSSProperties
 }) {
   const x = useMotionValue(0)
@@ -39,8 +42,14 @@ export default function StackedCard({
   })
 
   const handleDragEnd = async () => {
+    const isDraggingRight = x.get() > 0
+    const isDraggingLeft = x.get() < 0
+    const draggingDirection = isDraggingRight
+      ? "right"
+      : isDraggingLeft
+        ? "left"
+        : null
     if (Math.abs(x.get()) > dragLimit) {
-      x.set(0)
       await controls.start({
         y: -56,
         x: 0,
@@ -50,7 +59,7 @@ export default function StackedCard({
         },
       })
       // Call the callback with the card id so parent can handle reordering
-      handleDragEndCb?.(id)
+      handleDragEndCb?.(id, "left")
       x.set(0)
       await controls.start({
         y: -56,
@@ -67,7 +76,7 @@ export default function StackedCard({
   return (
     <motion.div
       id={`slide-${id}`}
-      className="bg-primary/70 scale-95 backdrop-blur-xl mx-2 w-full lg:max-w-2xl card md:card-side border-primary border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-[26rem] lg:[34rem] origin-bottom shadow-xl cursor-grab touch-manipulation"
+      className="bg-primary/70 scale-95 backdrop-blur-xl w-full lg:max-w-3xl card md:card-side border-primary border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-full origin-bottom shadow-xl cursor-grab touch-manipulation"
       drag="x"
       style={{
         gridRow: 1,

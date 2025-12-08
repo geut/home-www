@@ -48,6 +48,14 @@ const experience = [
     styles: "bg-white",
     work: ["P2P", "Libraries", "Fullstack", "Tooling"],
   },
+  {
+    id: 5,
+    image: "/images/sher.svg",
+    alt: "Sher.fm",
+    link: "https://sher.fm/",
+    styles: "bg-white",
+    work: ["Geut Project", "Platform", "Decentralized", "Audio Streaming"],
+  },
 ]
 
 export default function Experience() {
@@ -55,6 +63,7 @@ export default function Experience() {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [isLargeScreen, setIsLargeScreen] = useState(false)
   const [cards, setCards] = useState(experience)
+  const [mobileCards, setMobileCards] = useState(experience.toReversed())
 
   // Check screen size
   useEffect(() => {
@@ -107,8 +116,8 @@ export default function Experience() {
 
   if (isLargeScreen) {
     return (
-      <div className="no-scrollbar overflow-hidden relative w-full ">
-        <div className="overflow-hidden gap-6 max-w-7xl mx-auto">
+      <div className="no-scrollbar overflow-hidden relative w-full h-full max-h-full">
+        <div className="overflow-hidden gap-6 max-w-7xl mx-auto flex flex-col h-full max-h-full w-full justify-center">
           {/* Navigation buttons */}
           <div className="flex ml-2 w-full items-center justify-start h-20 gap-6 ">
             <NeuButton
@@ -126,7 +135,7 @@ export default function Experience() {
               <RightArrow className="size-6 stroke-2 dark:fill-info" />
             </NeuButton>
           </div>
-          <div className="flex gap-6">
+          <div className="flex gap-6 ">
             {experience.map((item, index) => (
               <div
                 key={`grid-${item.id}`}
@@ -151,10 +160,11 @@ export default function Experience() {
       </div>
     )
   }
+
   return (
-    <div className="relative w-full md:max-w-xl h-full flex flex-1 items-center">
-      <ul className="bg-transparent w-full grid place-items-center">
-        {cards.map((item) => (
+    <div className="no-scrollbar overflow-hidden relative">
+      <ul className="grid grid-cols-1 grid-rows-1 h-full">
+        {mobileCards.map((item) => (
           <ExperienceCardStacked
             id={item.id}
             key={`experience-${item.id}`}
@@ -163,8 +173,8 @@ export default function Experience() {
             link={item.link}
             styles={item.styles}
             work={item.work}
-            cards={cards}
-            setCards={setCards}
+            cards={mobileCards}
+            setCards={setMobileCards}
           />
         ))}
       </ul>

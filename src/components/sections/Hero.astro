@@ -11,31 +11,32 @@ const { navLinks, motto } = Astro.props
 const actionButtonsKeys = ["booking", "work"] as unknown as actionKeys[]
 ---
 
-<AnimatedSection ids="hero" styles='p-4' client:load transition:animate={slide({ duration: "0.1s" })}>
-  <Navbar navLinks={navLinks} client:only="react" transition:persist/>
+<AnimatedSection ids="hero" styles="p-4" client:load transition:animate={slide({ duration: "0.1s" })}>
+  <Navbar navLinks={navLinks} client:only="react" transition:persist />
   <div class="flex flex-col relative h-full overflow-auto overflow-x-hidden max-w-screen mx-auto">
     <div class="flex-1 flex items-center justify-center my-10 lg:my-14 h-full">
       <div class="h-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center w-full max-w-7xl pl-6 lg:px-10">
         <!-- Left: Content -->
-        <div class='relative md:h-[500px] z-10 h-full flex flex-col gap-6 md:gap-10 justify-around'>        
-          <div class="badge badge-soft badge-secondary dark:badge-info text-xs md:text-sm font-mono uppercase">
-            boutique <span class='font-mono'><abbr title="Everything JavaScript, Node.js, TS, bun...">JS</abbr></span> studio
-          </div>   
-          <h2 class='bg-clip-text text-fill-transparent md:text-fill bg-linear-to-r/shorter from-secondary from-17% via-white via-94% to-secondary md:via-secondary font-inter uppercase text-5xl md:text-6xl lg:text-7xl xl:text-8xl'>
+        <div class="relative h-[400px] md:h-[500px] z-10 flex flex-1 flex-col justify-center md:gap-10">
+          <h2
+            class="h-[400px] flex md:h-auto items-center bg-clip-text text-fill-transparent md:text-fill bg-linear-to-r/shorter from-secondary from-17% via-white via-94% to-secondary md:via-secondary font-inter uppercase text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+          >
             {motto}
           </h2>
-          <div class="-ml-6 lg:-ml-0">
-            <Tagline client:load/>
+          <div class="-ml-6 md:-ml-0 md:self-start lg:self-auto">
+            <Tagline client:load />
           </div>
         </div>
-        
+
         <!-- Right: Logo -->
-        <div class='flex lg:justify-end items-center absolute -right-45 lg:right-0 lg:relative top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0'>
+        <div
+          class="flex lg:justify-end items-center absolute -right-45 lg:right-0 lg:relative top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0"
+        >
           <Logo className="h-[300px] md:h-[400px] lg:h-[500px]" />
         </div>
       </div>
     </div>
-    <div class="fixed bottom-6 lg:bottom-12 left-6 right-6 z-10 flex-none  bg-transparent">
+    <div class="fixed bottom-6 lg:bottom-12 left-6 right-6 z-10 flex-none bg-transparent">
       <ActionButtons client:load actions={actionButtonsKeys as actionKeys[]} />
     </div>
   </div>
