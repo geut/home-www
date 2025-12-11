@@ -16,7 +16,8 @@ export const contactText = "Let's work together"
 
 export const navLinks = [
   { name: "Home", href: "/" },
-  { name: "How we Work", href: "/how-we-work" },
+  { name: "Our Work", href: "/our-work" },
+  { name: "The Team", href: "/team" },
   { name: "Contact", href: "/contact" },
 ]
 

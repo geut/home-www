@@ -1,26 +1,126 @@
+import { getCalApi } from "@calcom/embed-react"
+import { useEffect } from "react"
+import React from "react"
 import Button from "./Button"
 import Chat from "./icons/Chat"
+import Mail from "./icons/Mail"
+import Team from "./icons/Team"
+import Work from "./icons/Work"
 
-export default function ActionButtons() {
+const BookingButton = () => {
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const cal = await getCalApi({ namespace: "30min" })
+
+        cal("ui", {
+          cssVarsPerTheme: {
+            light: { "cal-brand": "#03005B" },
+            dark: { "cal-brand": "#091FFC" },
+          },
+          hideEventTypeDetails: false,
+          layout: "month_view",
+        })
+      } catch (_) {
+        // use a mailto link with subject "Book a call"
+        window.location.href =
+          "mailto:contact@geutstudio.com?subject=Book a call"
+      }
+    })()
+  }, [])
+
   return (
-    <div className="flex justify-center gap-x-3 md:gap-x-4 items-start font-inter px-4 md:px-0">
-      <Button
-        onClick={() => {
-          Calendly.initPopupWidget({ url: "https://calendly.com/diegogeut/30min" })
-        }}
-        className="text-sm h-8 md:text-sm md:h-10 lg:text-lg lg:h-12 px-3 md:px-4"
-        icon={Chat}
-      >
-        Book a call
-      </Button>
+    <Button
+      className="text-sm md:text-xl lg:text-3xl w-full font-normal bg-primary/80 uppercase flex items-center justify-center backdrop-blur-sm rounded-r-none"
+      icon={Chat({ className: "fill-primary-content size-4 md:size-6" })}
+      dataCalNamespace="30min"
+      dataCalLink="diegogeut/30min"
+      dataCalHideEventTypeDetails={false}
+      dataCalConfig='{"layout": "month_view"}'
+    >
+      Book
+    </Button>
+  )
+}
 
-      <Button
-        variant="outline"
-        href="/how-we-work"
-        className="text-sm h-8 md:text-sm md:h-10 lg:text-lg lg:h-12 px-3 md:px-4"
-      >
-        Our Work
-      </Button>
+const ContactButton = () => {
+  return (
+    <Button
+      className="text-sm md:text-xl lg:text-3xl w-full font-normal uppercase flex items-center justify-center backdrop-blur-sm border-0 border-primary"
+      icon={Mail({ className: "fill-primary size-4 md:size-6" })}
+      href="/contact"
+      variant="outline"
+    >
+      Contact
+    </Button>
+  )
+}
+
+const WorkButton = () => {
+  return (
+    <Button
+      icon={Work({ className: "fill-primary size-4 md:size-6" })}
+      variant="outline"
+      href="/our-work"
+      className="text-sm md:text-xl lg:text-3xl w-full font-normal uppercase flex items-center justify-center backdrop-blur-sm border-0"
+    >
+      Work
+    </Button>
+  )
+}
+
+const TeamButton = () => {
+  return (
+    <Button
+      icon={Team({ className: "fill-primary size-4 md:size-6" })}
+      variant="outline"
+      href="/team"
+      className="text-sm md:text-xl lg:text-3xl w-full uppercase flex items-center justify-center backdrop-blur-sm border-0"
+    >
+      Team
+    </Button>
+  )
+}
+
+const actionButtons: actionButtons = {
+  booking: {
+    component: BookingButton,
+  },
+  work: {
+    component: WorkButton,
+  },
+  contact: {
+    component: ContactButton,
+  },
+  team: {
+    component: TeamButton,
+  },
+}
+
+export interface actionKeys {
+  booking: "booking"
+  work: "work"
+  contact: "contact"
+  team: "team"
+}
+
+export interface actionButtons {
+  [key: string]: {
+    component: () => React.ReactNode
+  }
+}
+
+export default function ActionButtons({ actions }: { actions: actionKeys[] }) {
+  return (
+    <div className="flex w-full rounded-full border border-primary max-w-xl mx-auto justify-center items-stretch shadow-lg font-mono tracking-wider">
+      {actions.map((action) => {
+        const key =
+          typeof action === "string" ? action : Object.values(action)[0]
+        const ButtonComponent = actionButtons[key]?.component
+        return ButtonComponent ? (
+          <React.Fragment key={key}>{ButtonComponent()}</React.Fragment>
+        ) : null
+      })}
     </div>
   )
 }

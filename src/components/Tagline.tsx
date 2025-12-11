@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import { useState } from "react"
 import { TextEffect } from "./TextEffect"
 
@@ -9,57 +10,53 @@ const highlightVariants = {
       transition: {
         staggerChildren: 0.08,
       },
-      transform: "skewY(-2deg)",
     },
   },
   item: {
     hidden: {
       opacity: 0,
       backgroundColor: "transparent",
-      padding: "0.25rem 0.15rem",
+      padding: "1rem",
+      border: "1px solid transparent",
       scale: 1,
     },
     visible: {
       opacity: 1,
-      backgroundColor: "oklch(0.36 0.20 265.91)",
-      padding: "0.25rem 0.15rem",
       scale: 1,
+      transformOrigin: "center",
       transition: {
-        duration: 0.8,
+        duration: 2.8,
       },
     },
   },
 }
 
 export default function Tagline() {
-  const [showWave, setShowWave] = useState(false)
-
-  const handleAnimationComplete = () => {
-    console.log("Animation complete")
-    setShowWave(true)
-  }
-
   return (
-    <div className="z-40 mt-4 ">
-      <div
-        className={`transition-transform transform-3d duration-800 transform-gpu ${
-          showWave ? "animate-wave drop-shadow-lg duration-800" : ""
-        }`}
-        style={{
-          transform: "perspective(600px) rotateX(0deg) rotateY(0deg) skewY(-3deg) translateZ(0px)",
-          transformStyle: "preserve-3d",
-        }}
-      >
+    <div className="z-40 flex justify-center lg:justify-start">
+      <div className="inline-block">
         <TextEffect
-          per="char"
-          className="z-40 prose m-3 font-mono uppercase leading-2 md:leading-7 md:text-2xl text-white dark:text-info text-justify text-xs text-pretty tracking-tighter"
-          speedReveal={1.2}
-          speedSegment={0.6}
-          variants={highlightVariants}
-          onAnimationComplete={handleAnimationComplete}
+          by="text"
+          className="z-40 prose font-inter font-light p-2 uppercase md:text-2xl text-secondary dark:text-info text-sm md:text-center text-pretty tracking-wider"
+          duration={1.8}
+          delay={0.3}
+          animation="blurInUp"
+          once={true}
         >
-          Backend to Browser – The web is our playground.
+          Boutique JavaScript Studio
         </TextEffect>
+        {/* Animated border with width */}
+        <motion.div
+          className="h-0.5 bg-gradient-to-r from-secondary via-primary to-secondary"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{
+            duration: 1.1,
+            ease: [0.22, 1, 0.36, 1],
+            delay: 0.1,
+          }}
+          style={{ transformOrigin: "center" }}
+        />
       </div>
     </div>
   )

@@ -1,15 +1,14 @@
-import { motion, AnimatePresence } from "framer-motion"
-import { useState } from "react"
-import { Iso } from "./Iso"
-import Logo from "./Logo"
 import { navigate } from "astro:transitions/client"
+import { AnimatePresence, motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import { Iso } from "./Iso"
+import { WordRotate } from "./RotateWord"
+// get current navigation path, the astro way
 
-export default function Navbar({ navLinks }) {
+export default function Navbar({
+  navLinks,
+}: { navLinks: { name: string; href: string }[] }) {
   const [isToggled, setIsToggled] = useState(false)
-  const subMenuLinkStyles =
-    "text-2xl font-bold transition-all duration-150"
-  const MenuLinkStyles =
-    "text-lg font-light transition-all duration-150"
 
   const container = {
     hidden: { opacity: 0 },
@@ -34,122 +33,146 @@ export default function Navbar({ navLinks }) {
 
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { 
-      opacity: 1, 
-      x: 0, 
+    show: {
+      opacity: 1,
+      x: 0,
       y: 0,
       transition: {
         duration: 0.3,
         ease: "easeOut",
-      }
+      },
     },
-    exit: { 
-      opacity: 0, 
+    exit: {
+      opacity: 0,
       y: -10,
       transition: {
         duration: 0.2,
         ease: "easeIn",
-      }
+      },
     },
   }
 
   const backdrop = {
-    hidden: { 
+    hidden: {
       opacity: 0,
     },
-    show: { 
+    show: {
       opacity: 1,
       transition: {
         duration: 0.3,
         ease: "easeOut",
-      }
+      },
     },
-    exit: { 
+    exit: {
       opacity: 0,
       transition: {
         duration: 0.15,
         ease: "easeIn",
-      }
+      },
     },
   }
 
-
   return (
-    <nav className="relative top-0 left-0 w-full">
-      <div className="flex justify-between items-center">
-        <div className="flex items-center gap-2 h-7">
-          <a href="/" className="logo inline-flex items-center text-md font-bold group">
-            <Iso className="h-12 text-primary group-hover:-rotate-z-6 transition-all duration-300" full/> 
+    <nav className="fixed top-8 left-0 lg:top-12 right-0 z-50 px-8 lg:px-12">
+      <div className="grid grid-cols-2 items-center">
+        <div className="flex items-center h-8 lg:h-10 w-2/4">
+          <a
+            href="/"
+            className="logo inline-flex items-center text-md font-bold group cursor-pointer"
+          >
+            <Iso
+              className="h-12 lg:h-16 text-primary animate-tilt transition-all duration-300"
+              full
+            />
           </a>
         </div>
+
         <motion.div
-          className={`flex flex-col gap-[3.5px] cursor-pointer z-50 ${
-            isToggled ? "fixed top-12 md:top-14 left-8 right-10 md:left-10" : ""
-          }`}
+          className="flex flex-col gap-1 cursor-pointer z-50 mr-3 justify-self-end"
           onClick={() => setIsToggled((prev) => !prev)}
         >
           <motion.span
             animate={{
               rotate: isToggled ? 45 : 0,
               translateY: isToggled ? 7 : 0,
-              width: isToggled ? 30 : 30,
-              backgroundColor: isToggled ? "var(--color-accent)" : "var(--color-primary)",
+              width: isToggled ? 30 : 35,
+              backgroundColor: isToggled
+                ? "var(--color-accent)"
+                : "var(--color-primary)",
             }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="w-[30px] h-[2px] will-change-transform"
+            className="w-[35px] h-[2px] will-change-transform"
           />
           <motion.span
-            animate={{ 
-              opacity: isToggled ? 0 : 1, 
-              width: isToggled ? 0 : 25, 
-              backgroundColor: isToggled ? "var(--color-accent)" : "var(--color-primary)" 
+            animate={{
+              opacity: isToggled ? 0 : 1,
+              width: isToggled ? 0 : 30,
+              backgroundColor: isToggled
+                ? "var(--color-accent)"
+                : "var(--color-primary)",
             }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="w-[20px] h-[2px] will-change-transform origin-left"
+            className="w-[30px] h-[2px] will-change-transform origin-left"
           />
           <motion.span
             animate={{
               rotate: isToggled ? -45 : 0,
               translateY: isToggled ? -5 : 0,
-              width: isToggled ? 30 : 15,
-              backgroundColor: isToggled ? "var(--color-accent)" : "var(--color-primary)",
+              width: isToggled ? 30 : 20,
+              backgroundColor: isToggled
+                ? "var(--color-accent)"
+                : "var(--color-primary)",
             }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="w-[15px] h-[2px] will-change-transform"
+            className="w-[20px] h-[2px] will-change-transform"
           />
         </motion.div>
       </div>
 
       <AnimatePresence mode="wait">
         {isToggled && (
-          <motion.div 
-            className="fixed inset-4 flex flex-col justify-center items-center z-30 bg-primary/80 dark:bg-primary/50 backdrop-blur-xl will-change-transform"
+          <motion.div
+            className="fixed inset-4 font-inter flex flex-col justify-center transform-gpu items-center z-30 bg-primary/80 dark:bg-primary/50 backdrop-blur-xl will-change-transform"
             variants={backdrop}
             initial="hidden"
             animate="show"
             exit="exit"
           >
-            <motion.ul 
-              className="flex flex-col items-center gap-4 will-change-transform" 
-              variants={container} 
-              initial="hidden" 
+            <motion.ul
+              className="flex flex-col items-center"
+              variants={container}
+              initial="hidden"
               animate="show"
               exit="exit"
             >
               {navLinks.map((link) => (
-                <motion.li variants={item} key={link.name} className="will-change-transform">
-                  <a
-                    href={link.href}
-                    className={subMenuLinkStyles}
+                <motion.li
+                  variants={item}
+                  key={link.name}
+                  className="group flex items-center gap-4 text-4xl lg:text-7xl"
+                >
+                  <button
+                    type="button"
+                    className="tracking-wider uppercase transition-colors duration-100 transform-gpu"
                     onClick={(e) => {
                       e.preventDefault()
-                      navigate(link.href).then(() => {
-                        setIsToggled(false)
-                      })
                     }}
                   >
-                    {link.name}
-                  </a>
+                    <WordRotate
+                      words={[link.name, `⌿ ${link.name} ⍀`]}
+                      getClassName={(isActive) =>
+                        isActive ? "text-primary-content" : "text-accent"
+                      }
+                      onClick={() => {
+                        // Navigate after showing the effect
+                        setTimeout(() => {
+                          navigate(link.href).then(() => {
+                            setIsToggled(false)
+                          })
+                        }, 200)
+                      }}
+                    />
+                  </button>
                 </motion.li>
               ))}
             </motion.ul>

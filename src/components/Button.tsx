@@ -1,6 +1,6 @@
-import { twMerge } from "tailwind-merge"
 import { navigate } from "astro:transitions/client"
-import React from "react"
+import type React from "react"
+import { twMerge } from "tailwind-merge"
 
 const buttonVariants = {
   default: "bg-primary text-primary-content dark:text-secondary-content ",
@@ -14,21 +14,29 @@ export default function ButtonRight({
   variant = "default",
   icon,
   onClick,
+  dataCalNamespace,
+  dataCalLink,
+  dataCalConfig,
+  dataCalHideEventTypeDetails,
 }: {
   children: React.ReactNode
   className?: string
   href?: string
   variant?: "default" | "outline"
-  icon?: React.ComponentType<{ className?: string }>
+  icon?: React.ReactNode
   onClick?: () => void
+  dataCalNamespace?: string
+  dataCalLink?: string
+  dataCalConfig?: string
+  dataCalHideEventTypeDetails?: boolean
 }) {
   return (
     <button
       type="button"
       className={twMerge(
-        "group relative inline-flex h-12 items-center justify-center overflow-hidden px-6 font-medium rounded-full cursor-pointer",
+        "group relative inline-flex h-8 lg:h-12 items-center justify-center overflow-hidden px-6 font-medium rounded-full cursor-pointer hover:shadow-2 transition-shadow duration-300 ",
         buttonVariants[variant],
-        className
+        className,
       )}
       onClick={() => {
         if (href) {
@@ -38,10 +46,14 @@ export default function ButtonRight({
           onClick()
         }
       }}
+      data-cal-namespace={dataCalNamespace}
+      data-cal-link={dataCalLink}
+      data-cal-config={dataCalConfig}
+      data-cal-hide-event-type-details={dataCalHideEventTypeDetails}
     >
       <span>{children}</span>
       <div className="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-mobile-hover:w-5 group-mobile-hover:pl-1 group-mobile-hover:opacity-100 group-mobile-hover:translate-x-0">
-        {icon && React.createElement(icon)}
+        {icon}
         {!icon && (
           <svg
             width="15"

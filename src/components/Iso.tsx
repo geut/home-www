@@ -1,14 +1,14 @@
-export function Iso(props) {
+export function Iso(props: { full?: boolean; className?: string }) {
   const { full, ...rest } = props
   if (full) {
     return (
       <svg
         {...rest}
-        title="Geut is a JS Boutique Studio"
         viewBox="0 0 708 371"
-        fill="none"
+        fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
       >
+        <title>Geut is a JS Boutique Studio"</title>
         <path
           d="M536.313 140.506V103.814H562.985V65H605.72V103.814H643V140.506H605.72V196.301C605.72 209.037 612.085 215.708 624.209 215.708H643V252.703H618.45C582.08 252.703 562.985 235.721 562.985 199.333V140.506H536.313Z"
           fill="currentColor"
@@ -48,11 +48,11 @@ export function Iso(props) {
   return (
     <svg
       {...rest}
-      title="Geut is a JS Boutique Studio"
       viewBox="0 0 484 193"
       color="currentColor"
       xmlns="http://www.w3.org/2000/svg"
     >
+      <title>Geut is a JS Boutique Studio"</title>
       <path
         d="M46.1852 192.215C16.6648 192.215 2.85681 175.542 2.85681 151.009V148.389H36.1863V150.771C36.1863 158.631 41.8999 163.871 53.0891 163.871H72.1346C83.7999 163.871 89.2754 157.678 89.2754 145.293V130.763C80.4669 138.147 69.2777 142.673 56.6602 142.673C24.521 142.673 0 120.283 0 85.27C0 51.4478 24.0448 26.9148 55.9459 26.9148C69.5158 26.9148 81.6573 32.3931 91.18 41.2059V30.4876H122.843V144.34C122.843 172.922 106.178 192.215 76.1817 192.215H46.1852ZM33.8056 85.27C33.8056 101.705 46.1852 114.805 62.3738 114.805C78.5624 114.805 91.18 102.181 91.18 85.27C91.18 68.5971 78.5624 55.9734 62.3738 55.9734C46.1852 55.9734 33.8056 68.8353 33.8056 85.27Z"
         fill="currentColor"

@@ -1,9 +1,19 @@
-import { useState, useEffect, useCallback } from "react"
+import { useCallback, useEffect, useState } from "react"
 
-import ExperienceCard from "./ExperienceCard"
-
-import RightArrow from "./icons/RightArrow"
+import ExperienceCardLarge from "./ExperienceCardLarge"
+import ExperienceCardStacked from "./ExperienceCardStacked"
+import NeuButton from "./NeuButton"
 import LeftArrow from "./icons/LeftArrow"
+import RightArrow from "./icons/RightArrow"
+
+export interface Experience {
+  id: number
+  image: string
+  alt: string
+  link: string
+  styles: string
+  work: string[]
+}
 
 const experience = [
   {
@@ -28,57 +38,65 @@ const experience = [
     alt: "Loamist",
     link: "https://www.loamist.com/",
     styles: "bg-[#121212]",
-    work: ["Fullstack", "API Design", "Custom Tooling"],
+    work: ["Fullstack", "API Design", "AI Integration", "Custom Tooling"],
   },
   {
     id: 4,
     image: "",
-    alt: "Geut Open Source",
+    alt: "Geut OS",
     link: "https://github.com/geut",
     styles: "bg-white",
     work: ["P2P", "Libraries", "Fullstack", "Tooling"],
   },
+  {
+    id: 5,
+    image: "/images/sher.svg",
+    alt: "Sher.fm",
+    link: "https://sher.fm/",
+    styles: "bg-white",
+    work: ["Geut Project", "Platform", "Decentralized", "Audio Streaming"],
+  },
 ]
 
 export default function Experience() {
-  const [currentSlide, setCurrentSlide] = useState(0) // Start from 0
+  const [activeId, setActiveId] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [isLargeScreen, setIsLargeScreen] = useState(false)
+  const [cards, setCards] = useState(experience)
+  const [mobileCards, setMobileCards] = useState(experience.toReversed())
 
-  const goToSlide = useCallback(
-    (slideIndex: number) => {
-      if (isTransitioning) return // Prevent rapid clicking
+  // Check screen size
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024) // lg breakpoint
+    }
 
-      setIsTransitioning(true)
-      const element = document.getElementById(`slide-${slideIndex + 1}`) // Adjust for 1-based IDs
-      if (element) {
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "center",
-        })
-      }
-
-      // Reset transition flag after animation completes
-      setTimeout(() => setIsTransitioning(false), 300)
-    },
-    [isTransitioning]
-  )
+    checkScreenSize()
+    window.addEventListener("resize", checkScreenSize)
+    return () => window.removeEventListener("resize", checkScreenSize)
+  }, [])
 
   const goToPrevSlide = useCallback(() => {
     if (isTransitioning) return
 
-    const newSlide = currentSlide <= 0 ? experience.length - 1 : currentSlide - 1
-    setCurrentSlide(newSlide)
-    goToSlide(newSlide)
-  }, [currentSlide, goToSlide, isTransitioning])
+    setIsTransitioning(true)
+
+    // activeId moves 2 by 2
+    setActiveId(activeId - 1 > 0 ? activeId - 1 : 0)
+
+    setTimeout(() => setIsTransitioning(false), 300)
+  }, [isTransitioning, activeId])
 
   const goToNextSlide = useCallback(() => {
     if (isTransitioning) return
 
-    const newSlide = currentSlide >= experience.length - 1 ? 0 : currentSlide + 1
-    setCurrentSlide(newSlide)
-    goToSlide(newSlide)
-  }, [currentSlide, goToSlide, isTransitioning])
+    setIsTransitioning(true)
+
+    // activeId moves 2 by 2
+    setActiveId(activeId + 1 < cards.length ? activeId + 1 : cards.length - 1)
+
+    setTimeout(() => setIsTransitioning(false), 300)
+  }, [isTransitioning, activeId, cards])
 
   // Keyboard navigation
   useEffect(() => {
@@ -89,35 +107,65 @@ export default function Experience() {
       } else if (event.key === "ArrowRight") {
         event.preventDefault()
         goToNextSlide()
-      } else if (event.key >= "1" && event.key <= String(experience.length)) {
-        event.preventDefault()
-        const slideIndex = parseInt(event.key) - 1
-        setCurrentSlide(slideIndex)
-        goToSlide(slideIndex)
       }
     }
 
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [goToPrevSlide, goToNextSlide, goToSlide])
+  }, [goToPrevSlide, goToNextSlide])
 
-  // Auto-scroll support (optional)
-  const enableAutoScroll = false // Set to true if you want auto-scroll
-  useEffect(() => {
-    if (!enableAutoScroll) return
-
-    const interval = setInterval(() => {
-      goToNextSlide()
-    }, 5000) // Auto-advance every 5 seconds
-
-    return () => clearInterval(interval)
-  }, [goToNextSlide, enableAutoScroll])
+  if (isLargeScreen) {
+    return (
+      <div className="no-scrollbar overflow-hidden relative w-full h-full max-h-full">
+        <div className="overflow-hidden gap-6 max-w-7xl mx-auto flex flex-col h-full max-h-full w-full justify-center">
+          {/* Navigation buttons */}
+          <div className="flex ml-2 w-full items-center justify-start h-20 gap-6 ">
+            <NeuButton
+              aria-label="Previous slide"
+              onClick={goToPrevSlide}
+              className="bg-primary/70 rounded-xl backdrop-blur-2xl cursor-pointer"
+            >
+              <LeftArrow className="size-6 stroke-2 dark:fill-info" />
+            </NeuButton>
+            <NeuButton
+              aria-label="Next slide"
+              onClick={goToNextSlide}
+              className="bg-primary/70 rounded-xl backdrop-blur-2xl cursor-pointer"
+            >
+              <RightArrow className="size-6 stroke-2 dark:fill-info" />
+            </NeuButton>
+          </div>
+          <div className="flex gap-6 ">
+            {experience.map((item, index) => (
+              <div
+                key={`grid-${item.id}`}
+                className="flex transform transition-all duration-150"
+              >
+                <ExperienceCardLarge
+                  id={item.id}
+                  activeId={activeId}
+                  move={index >= activeId ? activeId * 100 : index * 100}
+                  image={item.image}
+                  alt={item.alt}
+                  link={item.link}
+                  styles={item.styles}
+                  work={item.work}
+                  cards={cards}
+                  setCards={setCards}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <div className="relative w-full h-full items-center flex md:max-w-xl bg-origin-content">
-      <ul className="carousel carousel-center bg-transparent flex-row">
-        {experience.map((item, index) => (
-          <ExperienceCard
+    <div className="no-scrollbar overflow-hidden relative">
+      <ul className="grid grid-cols-1 grid-rows-1 h-full">
+        {mobileCards.map((item) => (
+          <ExperienceCardStacked
             id={item.id}
             key={`experience-${item.id}`}
             image={item.image}
@@ -125,49 +173,11 @@ export default function Experience() {
             link={item.link}
             styles={item.styles}
             work={item.work}
+            cards={mobileCards}
+            setCards={setMobileCards}
           />
         ))}
       </ul>
-
-      {/* Navigation buttons */}
-      <div className="hidden md:block absolute top-2/5 w-full">
-        <button
-          type="button"
-          onClick={goToPrevSlide}
-          disabled={isTransitioning}
-          className="absolute -left-14 z-20 btn btn-circle btn-outline dark:fill-info hover:fill-base-100 hover:btn-primary transition-all duration-200 disabled:opacity-50"
-          aria-label="Previous slide"
-        >
-          <LeftArrow className="w-4 h-4" />
-        </button>
-        <button
-          type="button"
-          onClick={goToNextSlide}
-          disabled={isTransitioning}
-          className="absolute -right-14 z-20 btn btn-circle btn-outline dark:fill-info hover:fill-base-100 hover:btn-primary transition-all duration-200 disabled:opacity-50"
-          aria-label="Next slide"
-        >
-          <RightArrow className="w-4 h-4" />
-        </button>
-      </div>
-
-      {/* Slide indicators (optional) */}
-      <div className="absolute hidden md:bottom-4 left-1/2 transform -translate-x-1/2 md:flex gap-2">
-        {experience.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => {
-              setCurrentSlide(index)
-              goToSlide(index)
-            }}
-            disabled={isTransitioning}
-            className={`w-2 h-2 rounded-full transition-all duration-200 ${
-              index === currentSlide ? "bg-primary scale-125" : "bg-primary/30 hover:bg-primary/60"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
     </div>
   )
 }
