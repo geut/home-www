@@ -36,12 +36,12 @@ export default function Tagline() {
     <div className="z-40 flex justify-center lg:justify-start">
       <div className="inline-block">
         <TextEffect
-          per="line"
-          className="z-40 prose font-mono font-thin p-2 uppercase md:text-2xl text-secondary dark:text-info text-sm md:text-center text-pretty tracking-wider"
-          speedReveal={1.8}
-          speedSegment={1.8}
+          by="text"
+          className="z-40 prose font-inter font-light p-2 uppercase md:text-2xl text-secondary dark:text-info text-sm md:text-center text-pretty tracking-wider"
+          duration={1.8}
           delay={0.3}
-          preset="fade"
+          animation="blurInUp"
+          once={true}
         >
           Boutique JavaScript Studio
         </TextEffect>

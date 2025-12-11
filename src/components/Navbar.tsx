@@ -132,14 +132,14 @@ export default function Navbar({
       <AnimatePresence mode="wait">
         {isToggled && (
           <motion.div
-            className="fixed inset-4 font-inter flex flex-col justify-center items-center z-30 bg-primary/80 dark:bg-primary/50 backdrop-blur-xl will-change-transform"
+            className="fixed inset-4 font-inter flex flex-col justify-center transform-gpu items-center z-30 bg-primary/80 dark:bg-primary/50 backdrop-blur-xl will-change-transform"
             variants={backdrop}
             initial="hidden"
             animate="show"
             exit="exit"
           >
             <motion.ul
-              className="flex flex-col items-center gap-6 lg:gap-8 will-change-transform"
+              className="flex flex-col items-center"
               variants={container}
               initial="hidden"
               animate="show"
@@ -149,20 +149,19 @@ export default function Navbar({
                 <motion.li
                   variants={item}
                   key={link.name}
-                  className="group flex items-center gap-4 text-2xl lg:text-4xl"
+                  className="group flex items-center gap-4 text-4xl lg:text-7xl"
                 >
                   <button
                     type="button"
-                    className="tracking-wider uppercase"
+                    className="tracking-wider uppercase transition-colors duration-100 transform-gpu"
                     onClick={(e) => {
                       e.preventDefault()
                     }}
                   >
                     <WordRotate
-                      words={[link.name, `| ${link.name} |`]}
-                      className=" transition-colors duration-150"
+                      words={[link.name, `⌿ ${link.name} ⍀`]}
                       getClassName={(isActive) =>
-                        isActive ? "text-white" : "text-accent"
+                        isActive ? "text-primary-content" : "text-accent"
                       }
                       onClick={() => {
                         // Navigate after showing the effect

@@ -19,7 +19,7 @@ export function WordRotate({
     initial: { opacity: 0, y: -50 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: 50 },
-    transition: { duration: 0.15, ease: "easeIn" },
+    transition: { duration: 0.15, ease: "easeOut" },
   },
   className,
   getClassName,
@@ -36,8 +36,10 @@ export function WordRotate({
 
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
     }
-    setIndex((prevIndex) => (prevIndex + 1) % words.length)
+    setIndex(1)
+    // setIndex((prevIndex) => (prevIndex + 1) % words.length)
   }
 
   const handleMouseLeave = () => {
@@ -45,7 +47,7 @@ export function WordRotate({
 
     timeoutRef.current = setTimeout(() => {
       setIndex(0)
-    }, 10)
+    }, 150)
   }
 
   const handleInteraction = (e: React.MouseEvent | React.TouchEvent) => {

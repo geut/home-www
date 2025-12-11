@@ -25,8 +25,8 @@ export default function GeutCard({
           This is{" "}
           <Iso full className="h-18 leading-14 mt-4 md:h-24 md:leading-24" />
         </h3>
-        <div className="flex flex-1 flex-col font-mono font-extrabold justify-end md:justify-center items-center p-4">
-          <p className="text-sm/relaxed uppercase md:text-base font-inter dark:text-primary-content">
+        <div className="flex flex-1 flex-col md:grid md:grid-cols-3 md:content-center md:items-start font-mono font-extrabold justify-end items-center p-4 md:gap-x-8">
+          <p className="text-sm/relaxed md:text-justify uppercase md:text-lg font-mono dark:text-primary-content ">
             We’re{" "}
             <span className="font-bold text-primary dark:text-accent">
               GEUT
@@ -34,13 +34,13 @@ export default function GeutCard({
             — a small, battle-tested team of developers from Argentina with 15+
             years of experience building software that ships.
           </p>
-          <div className="divider opacity-50 my-1 md:my-2" />
-          <p className="text-sm/relaxed uppercase md:text-base font-mono text-primary">
+          <div className="divider md:hidden md:mx-auto opacity-50 my-1 md:my-2" />
+          <p className="text-sm/relaxed md:text-justify uppercase md:text-lg font-mono text-primary">
             We specialize in everything JavaScript — from Node.js and TypeScript
             to Bun and the modern web. It’s what we live and breathe.
           </p>
-          <div className="divider opacity-50 my-1 md:my-2" />
-          <p className="text-sm/relaxed uppercase md:text-base font-inter dark:text-primary-content">
+          <div className="divider md:hidden md:mx-auto opacity-50 my-1 md:my-2" />
+          <p className="text-sm/relaxed md:text-justify uppercase md:text-lg font-mono dark:text-primary-content ">
             Need a full team or a precision strike? We plug in fast, move with
             purpose, and deliver.{" "}
             <a

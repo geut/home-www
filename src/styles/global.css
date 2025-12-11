@@ -104,13 +104,13 @@ html {
   scrollbar-width: none; /* Firefox */
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Avantt';
   src: url('src/assets/fonts/Avantt-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 @custom-variant has-hover (@media (hover: hover));
 @custom-variant no-hover (@media not all and (hover: hover));
@@ -140,9 +140,6 @@ html {
     }
   }
 
-  --font-avantt: "Avantt", sans-serif;
-  --font-ibm-plex-mono: "IBM Plex Mono", monospace;
-  --font-inter: "Inter", sans-serif;
   --font-sans: var(--font-inter);
   --font-mono: var(--font-ibm-plex-mono);
 
@@ -212,7 +209,7 @@ html {
   h2 {
     color: var(--color-secondary);
     font-size: 2.618rem;
-    font-family: var(--font-avantt);
+    font-family: var(--font-inter);
 
     @media (min-width: 1024px) {
       font-size: 4.236rem;

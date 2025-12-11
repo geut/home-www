@@ -39,17 +39,17 @@ export default function GeutianCard({
           <div className="flex items-center text-[10px] lg:text-xs text-accent/70 font-mono uppercase tracking-wide">
             <span className="mr-1 -mt-[1px] font-bold font-mono">✛</span>user
           </div>
-          <h3 className="card-title h-10 lg:h-12 font-mono tracking-tight w-full text-2xl md:text-3xl cursor-pointer">
+          <h3 className="card-title h-10 lg:h-12 font-avantt tracking-tight w-full text-2xl md:text-3xl cursor-pointer">
             {data.name}
           </h3>
         </div>
         <div
-          className="text-xs lg:text-lg text-primary-content font-mono uppercase text-wrap tracking-tight"
+          className="text-xs lg:text-sm text-primary-content font-inter uppercase text-wrap tracking-tight"
           dangerouslySetInnerHTML={{ __html: data.role }}
         />
         <div className="flex flex-col gap-1">
           <div className="flex items-center text-[10px] lg:text-xs text-accent/70 font-mono uppercase tracking-wide">
-            <span className="mr-1 -mt-[1px] font-bold font-mono">✛</span>skills
+            <span className="mr-1 -mt-[2px] font-bold font-mono">✛</span>skills
           </div>
           <div className="flex flex-col gap-2">
             <p className="text-sm text-primary-content">{data.description}</p>
@@ -59,7 +59,7 @@ export default function GeutianCard({
                   <a href={link.url} target="_blank" rel="noopener noreferrer">
                     <SocialIcon
                       icon={link.type}
-                      className="size-4 md:size-6 fill-neutral/50 touch-manipulation hover:fill-neutral dark:fill-info/50 dark:hover:fill-info"
+                      className="size-4 md:size-6 fill-info/50 touch-manipulation hover:fill-accent dark:fill-info/50 dark:hover:fill-info"
                     />
                   </a>
                 </li>

@@ -1,70 +1,70 @@
-
 ---
-const {
-  title = "geut: boutique javascript studio",
-  description = "From MVPs to scale, with clarity and craft",
-} = Astro.props
+const { title = "geut: boutique javascript studio", description = "From MVPs to scale, with clarity and craft" } =
+  Astro.props
 
 import "../styles/global.css"
 import { Font } from "astro:assets"
 import { ClientRouter } from "astro:transitions"
 ---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, orientation=portrait" />
-		<link rel="icon" type="image/png" href="/favicon.png" media="(prefers-color-scheme: light)" />
-		<link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: dark)" />
-		<meta name='description' content={description} />
-		<meta name="image" content="/images/geut-og.png" />
-		<title>{title}</title>
-		<Font cssVariable='--font-inter' preload />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content="/images/geut-og.png" />
-		<meta property="og:url" content="https://geutstudio.com" />
-		<meta property="og:type" content="website" />
-		<meta property="og:locale" content="en_US" />
-		<meta property="og:site_name" content={title} />
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content="/images/geut-og.png" />
-		<meta name="twitter:url" content="https://geutstudio.com" />
-		<meta name="twitter:site" content="@geutstudio" />
-		<meta name="twitter:creator" content="@geutstudio" />
-		<ClientRouter />
-		<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-		<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-	</head>
-	<body class="bg-white h-screen w-full overflow-hidden">
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, orientation=portrait" />
+    <link rel="icon" type="image/png" href="/favicon.png" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: dark)" />
+    <meta name="description" content={description} />
+    <meta name="image" content="/images/geut-og.png" />
+    <title>{title}</title>
+    <Font cssVariable="--font-inter" preload />
+    <Font cssVariable="--font-ibm-plex-mono" preload />
+    <Font cssVariable="--font-avantt" preload />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/geut-og.png" />
+    <meta property="og:url" content="https://geutstudio.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content={title} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/images/geut-og.png" />
+    <meta name="twitter:url" content="https://geutstudio.com" />
+    <meta name="twitter:site" content="@geutstudio" />
+    <meta name="twitter:creator" content="@geutstudio" />
+    <ClientRouter />
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  </head>
+  <body class="bg-white h-screen w-full overflow-hidden">
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-	}
-	@media screen and (orientation: landscape) and (max-height: 640px) {
-  body::before {
-    content: "Please rotate your device to portrait mode for the best experience.";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    text-align: center;
-    font-size: 1.2rem;
-    padding: 2rem;
+  html,
+  body {
+    margin: 0;
   }
-}
+  @media screen and (orientation: landscape) and (max-height: 640px) {
+    body::before {
+      content: "Please rotate your device to portrait mode for the best experience.";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      text-align: center;
+      font-size: 1.2rem;
+      padding: 2rem;
+    }
+  }
 </style>

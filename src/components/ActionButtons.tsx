@@ -31,7 +31,7 @@ const BookingButton = () => {
 
   return (
     <Button
-      className="text-sm md:text-xl lg:text-3xl w-full font-normal bg-primary/80 uppercase flex items-center justify-center backdrop-blur-sm rounded-r-none tracking-wide"
+      className="text-sm md:text-xl lg:text-3xl w-full font-normal bg-primary/80 uppercase flex items-center justify-center backdrop-blur-sm rounded-r-none"
       icon={Chat({ className: "fill-primary-content size-4 md:size-6" })}
       dataCalNamespace="30min"
       dataCalLink="diegogeut/30min"
@@ -46,7 +46,7 @@ const BookingButton = () => {
 const ContactButton = () => {
   return (
     <Button
-      className="text-sm md:text-xl lg:text-3xl w-full font-normal uppercase flex items-center justify-center backdrop-blur-sm border-0 border-primary tracking-wide"
+      className="text-sm md:text-xl lg:text-3xl w-full font-normal uppercase flex items-center justify-center backdrop-blur-sm border-0 border-primary"
       icon={Mail({ className: "fill-primary size-4 md:size-6" })}
       href="/contact"
       variant="outline"
@@ -62,7 +62,7 @@ const WorkButton = () => {
       icon={Work({ className: "fill-primary size-4 md:size-6" })}
       variant="outline"
       href="/our-work"
-      className="text-sm md:text-xl lg:text-3xl w-full font-normal uppercase flex items-center justify-center backdrop-blur-sm border-0 tracking-wide"
+      className="text-sm md:text-xl lg:text-3xl w-full font-normal uppercase flex items-center justify-center backdrop-blur-sm border-0"
     >
       Work
     </Button>
@@ -75,7 +75,7 @@ const TeamButton = () => {
       icon={Team({ className: "fill-primary size-4 md:size-6" })}
       variant="outline"
       href="/team"
-      className="text-sm md:text-xl lg:text-3xl w-full font-normal uppercase flex items-center justify-center backdrop-blur-sm border-0 tracking-wide"
+      className="text-sm md:text-xl lg:text-3xl w-full uppercase flex items-center justify-center backdrop-blur-sm border-0"
     >
       Team
     </Button>
@@ -112,7 +112,7 @@ export interface actionButtons {
 
 export default function ActionButtons({ actions }: { actions: actionKeys[] }) {
   return (
-    <div className="flex w-full rounded-full border border-primary max-w-xl mx-auto justify-center items-stretch font-mono shadow-lg">
+    <div className="flex w-full rounded-full border border-primary max-w-xl mx-auto justify-center items-stretch shadow-lg font-mono tracking-wider">
       {actions.map((action) => {
         const key =
           typeof action === "string" ? action : Object.values(action)[0]
