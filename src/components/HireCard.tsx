@@ -60,7 +60,7 @@ export default function GeutCard({
           </a>
           <Iso
             full
-            className="h-24 md:h-24 md:mt-1 md:leading-24 text-base-100 dark:text-info"
+            className="h-24 md:h-24 md:mt-1 md:leading-24 text-base-100 dark:text-primary"
           />
         </div>
       </div>

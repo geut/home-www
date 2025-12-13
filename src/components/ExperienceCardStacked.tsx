@@ -79,7 +79,7 @@ export default function ExperienceCardStacked({
   return (
     <motion.div
       id={`slide-${id}`}
-      className="bg-primary/70 gpu-accelerate scale-95 backdrop-blur-xl w-full card border-primary border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-full max-h-[40rem] lg:h-[30rem] lg:max-h-none origin-bottom shadow-xl"
+      className="bg-primary/70 gpu-accelerate scale-95 backdrop-blur-xl w-full card border-primary border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-full lg:h-[30rem] lg:max-h-none origin-bottom shadow-xl touch-manipulation"
       style={{
         gridRow: 1,
         gridColumn: 1,
@@ -89,33 +89,34 @@ export default function ExperienceCardStacked({
         scale,
         height: "100%",
         transition: "0.150s transform",
+        maxHeight: "calc(100vh - var(--card-offset))",
       }}
       drag="x"
       animate={controls}
       dragConstraints={{ left: 0, right: 0 }}
       onDragEnd={handleDragEnd}
     >
-      <figure className="rounded-t-xl h-full max-h-80">
+      <figure className="rounded-t-xl size-full min-h-60">
         {image ? (
           <img
             src={image}
             alt={alt}
             className={twMerge(
-              "object-contain w-full h-full max-h-80 p-12 mask-alpha mask-b-from-primary mask-b-from-85% mask-b-to-transparent",
+              "object-contain size-full p-12 mask-alpha mask-b-from-primary mask-b-from-85% mask-b-to-transparent",
               styles,
             )}
           />
         ) : (
           <Iso
             className={twMerge(
-              "object-contain w-full h-full max-h-80 p-12 text-primary mask-alpha mask-b-from-primary mask-b-from-85% mask-b-to-transparent",
+              "object-contain size-full min-h-60 p-12 text-primary mask-alpha mask-b-from-primary mask-b-from-85% mask-b-to-transparent",
               styles,
             )}
           />
         )}
       </figure>
 
-      <div className="card-body py-1 lg:py-2 bg-curl-card bg-cover h-full min-h-48 flex-1 flex flex-col rounded-b-lg justify-start lg:px-10 text-primary-content">
+      <div className="card-body bg-curl-card bg-cover flex-1 flex flex-col shrink-0 rounded-b-lg justify-start text-primary-content">
         <div className="flex flex-col -gap-2">
           <div className="flex items-center text-[10px] lg:text-xs text-accent/70 font-mono uppercase tracking-wide">
             <span className="mr-1 -mt-[1px] font-bold font-mono">✛</span>client
