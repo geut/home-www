@@ -128,6 +128,16 @@ html {
 }
 @custom-variant mobile-hover (&:hover);
 
+:root {
+  --card-offset: 16rem;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --card-offset: 20rem;
+  }
+}
+
 @theme {
   --animate-background-shine: background-shine 8s ease-in-out infinite;
 
