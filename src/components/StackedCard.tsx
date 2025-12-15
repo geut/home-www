@@ -76,7 +76,7 @@ export default function StackedCard({
   return (
     <motion.div
       id={`slide-${id}`}
-      className="bg-primary/70 scale-95 backdrop-blur-xl w-full lg:max-w-3xl card md:card-side border-primary border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-full origin-bottom shadow-xl cursor-grab touch-manipulation"
+      className="bg-primary/70 scale-95 backdrop-blur-xl w-full lg:max-w-3xl card md:card-side border-primary border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-full origin-bottom shadow-xl cursor-grab touch-manipulation gpu-accelerate"
       drag="x"
       style={{
         gridRow: 1,

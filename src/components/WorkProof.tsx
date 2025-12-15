@@ -116,7 +116,7 @@ export default function Experience() {
 
   if (isLargeScreen) {
     return (
-      <div className="no-scrollbar overflow-hidden relative w-full h-full max-h-full">
+      <div className="no-scrollbar overflow-hidden relative size-full max-h-full">
         <div className="overflow-hidden gap-6 max-w-7xl mx-auto flex flex-col h-full max-h-full w-full justify-center">
           {/* Navigation buttons */}
           <div className="flex ml-2 w-full items-center justify-start h-20 gap-6 ">
@@ -162,8 +162,8 @@ export default function Experience() {
   }
 
   return (
-    <div className="no-scrollbar overflow-hidden relative">
-      <ul className="grid grid-cols-1 grid-rows-1 h-full">
+    <div className="flex items-center justify-start size-full max-h-full">
+      <ul className="grid grid-cols-1 grid-rows-1">
         {mobileCards.map((item) => (
           <ExperienceCardStacked
             id={item.id}
