@@ -1,0 +1,44 @@
+# Welcome AI crawlers to learn about GEUT
+# https://geutstudio.com
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://geutstudio.com/sitemap-index.xml
+
+# LLM context file
+LLMs-Txt: https://geutstudio.com/llms.txt
+
+# AI-specific crawlers (explicitly welcomed)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Content signal (emerging standard by Cloudflare)
+# Allows AI training, AI input, and search indexing
+Content-Signal: ai-train=yes, ai-input=yes, search=yes
