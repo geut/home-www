@@ -6,7 +6,7 @@
 
 GEUT is a software development studio founded by experienced engineers passionate about building reliable, scalable systems. We specialize in:
 - Distributed systems and P2P protocols
-- Full-stack web development (React, Astro, Node.js, Bun, etc)
+- Full-stack web development (React, Astro, Node.js, Bun, etc.)
 - Developer tools and open source
 - Technical consulting and team augmentation
 
