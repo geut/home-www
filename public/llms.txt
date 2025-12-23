@@ -1,0 +1,28 @@
+# GEUT
+
+> Software Development Studio specializing in distributed systems, P2P technology, and modern web development.
+
+## About
+
+GEUT is a software development studio founded by experienced engineers passionate about building reliable, scalable systems. We specialize in:
+- Distributed systems and P2P protocols
+- Full-stack web development (React, Astro, Node.js, Bun, etc.)
+- Developer tools and open source
+- Technical consulting and team augmentation
+
+## Team
+
+- Martin Acosta - Backend Architect, CTO
+- Diego Paez - Systems Thinker, CEO
+- Esteban Primost - Frontend-focused Fullstack, CPO
+
+## Contact
+
+- Website: https://geutstudio.com
+- GitHub: https://github.com/geut
+- Email: contact@geutstudio.com
+- Book a call: https://cal.com/diegogeut/30min
+
+## Services
+
+We offer product development, technical consulting, and team augmentation for startups and established companies.
