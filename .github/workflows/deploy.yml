@@ -16,6 +16,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy
+        id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
