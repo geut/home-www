@@ -96,29 +96,26 @@ export default function ExperienceCardStacked({
       dragConstraints={{ left: 0, right: 0 }}
       onDragEnd={handleDragEnd}
     >
-      <figure className="rounded-t-xl size-full min-h-60">
+      <figure className="rounded-t-xl size-full min-h-60 relative">
         {image ? (
           <img
             src={image}
             alt={alt}
             className={twMerge(
-              "object-contain size-full p-12 mask-alpha mask-b-from-primary mask-b-from-85% mask-b-to-transparent",
+              "object-contain size-full p-12 mask-alpha mask-b-from-primary mask-b-from-65% mask-b-to-transparent",
               styles,
             )}
           />
         ) : (
           <Iso
             className={twMerge(
-              "object-contain size-full min-h-60 p-12 text-primary mask-alpha mask-b-from-primary mask-b-from-85% mask-b-to-transparent",
+              "object-contain size-full min-h-60 p-12 text-primary mask-alpha mask-b-from-primary mask-b-from-65% mask-b-to-transparent",
               styles,
             )}
           />
         )}
-      </figure>
-
-      <div className="card-body bg-curl-card bg-cover flex-1 flex flex-col shrink-0 rounded-b-lg justify-start text-primary-content">
-        <div className="flex flex-col -gap-2">
-          <div className="flex items-center text-[10px] lg:text-xs text-accent/70 font-mono uppercase tracking-wide">
+        <div className="flex flex-col absolute -bottom-2 left-6 md:left-10 md:bottom-4">
+          <div className="flex items-center text-[10px] lg:text-xs text-accent w-fit px-2 rounded-lg bg-accent-content/50 font-mono uppercase tracking-wide">
             <span className="mr-1 -mt-[1px] font-bold font-mono">✛</span>client
             id
           </div>
@@ -134,8 +131,11 @@ export default function ExperienceCardStacked({
             </a>
           </h3>
         </div>
+      </figure>
+
+      <div className="card-body min-h-40 pt-2 flex-1 flex flex-col shrink-0 rounded-b-lg justify-start text-primary-content">
         <div className="flex flex-col gap-1">
-          <div className="flex items-center text-[10px] lg:text-xs text-accent/70 font-mono uppercase tracking-wide">
+          <div className="flex items-center text-[10px] lg:text-xs text-accent w-fit px-2 rounded-lg bg-accent-content/50 font-mono uppercase tracking-wide">
             <span className="mr-1 -mt-[1px] font-bold font-mono">✛</span>work
             done
           </div>

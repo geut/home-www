@@ -1,9 +1,7 @@
-import { useMotionValue } from "framer-motion"
 import { useCallback, useEffect, useState } from "react"
-import Diego from "../assets/dk-profile.jpg"
-import Esteban from "../assets/esteban-profile.jpg"
-import HireTeam from "../assets/hire-team.png"
-import Martin from "../assets/tincho-profile.jpg"
+import Diego from "../assets/dk-profile.webp"
+import Esteban from "../assets/esteban-profile.webp"
+import Martin from "../assets/tincho-profile.png"
 import GeutCard from "./GeutCard"
 import GeutianCard from "./GeutianCard"
 import HireCard from "./HireCard"
@@ -11,8 +9,9 @@ import NeuButton from "./NeuButton"
 import LeftArrow from "./icons/LeftArrow"
 import RightArrow from "./icons/RightArrow"
 
-export interface teamData {
+export interface TeamMember {
   id: number
+  slug: string
   name: string
   role: string
   description: string
@@ -23,9 +22,13 @@ export interface teamData {
   }[]
 }
 
-const teamData = [
+// Keep the old name for backwards compatibility
+export type teamData = TeamMember
+
+export const teamData: TeamMember[] = [
   {
     id: 1,
+    slug: "martin",
     name: "Martin Acosta",
     role: "Backend Architect · CTO in <b>Product Mode</b>",
     image: Martin.src,
@@ -48,6 +51,7 @@ const teamData = [
   },
   {
     id: 2,
+    slug: "diego",
     name: "Diego Paez",
     role: "Systems Thinker · CEO in <b>Product Mode</b>",
     image: Diego.src,
@@ -70,6 +74,7 @@ const teamData = [
   },
   {
     id: 3,
+    slug: "esteban",
     name: "Esteban Primost",
     role: "Frontend-first Fullstack · CPO in <b>Product Mode</b>",
     image: Esteban.src,
@@ -90,7 +95,7 @@ const teamData = [
       },
     ],
   },
-] as teamData[]
+]
 
 const EstebanCard = (props: {
   id: number
@@ -119,18 +124,56 @@ const DiegoCard = (props: {
   ) => void
 }) => <GeutianCard {...props} data={teamData[1]} />
 
-export default function TeamCard() {
-  const cardsComponents = [
-    MartinCard,
-    DiegoCard,
-    EstebanCard,
-    HireCard,
-    GeutCard,
-  ]
+// Map slugs to card components for initial ordering
+const slugToCardMap: Record<string, React.FC<CardProps>> = {
+  martin: MartinCard,
+  diego: DiegoCard,
+  esteban: EstebanCard,
+}
+
+type CardProps = {
+  id: number
+  isFront: boolean
+  handleDragEndCb: (
+    cardId: number,
+    draggingDirection: "right" | "left" | null,
+  ) => void
+}
+
+export default function TeamCard({
+  initialMember,
+}: { initialMember?: string }) {
+  const defaultCards = [MartinCard, DiegoCard, EstebanCard, HireCard, GeutCard]
+
+  // Reorder cards so the target member is at the end (front of stack)
+  const getInitialCards = (): React.FC<CardProps>[] => {
+    if (!initialMember || !slugToCardMap[initialMember]) {
+      return defaultCards
+    }
+
+    const memberCards = [MartinCard, DiegoCard, EstebanCard]
+    const otherCards = [HireCard, GeutCard]
+
+    // Find the index of the target member
+    const targetIndex = memberCards.findIndex(
+      (card) => card === slugToCardMap[initialMember],
+    )
+
+    if (targetIndex === -1) return defaultCards
+
+    // Rotate member cards so target is at the end (last = front of stack)
+    const rotated = [
+      ...memberCards.slice(targetIndex + 1),
+      ...memberCards.slice(0, targetIndex + 1),
+    ]
+
+    return [...otherCards, ...rotated]
+  }
+
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [movingRight, setMovingRight] = useState(false)
   const [movingLeft, setMovingLeft] = useState(false)
-  const [cards, setCards] = useState(cardsComponents)
+  const [cards, setCards] = useState(getInitialCards)
 
   const handleCardDragEnd = (
     cardId: number,
@@ -195,9 +238,9 @@ export default function TeamCard() {
   }, [goToPrevSlide, goToNextSlide])
 
   return (
-    <div className="no-scrollbar relative w-full h-full max-h-full">
+    <div className="no-scrollbar relative w-full max-h-[90%]">
       {/* Navigation buttons */}
-      <div className="flex w-full h-full max-h-full items-center justify-start gap-0 lg:gap-6">
+      <div className="flex w-full items-center justify-start gap-0 lg:gap-6">
         <NeuButton
           aria-label="Previous slide"
           onClick={goToPrevSlide}

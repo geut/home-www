@@ -1,0 +1,21 @@
+---
+import TeamSection from "../../components/sections/Team.astro"
+import { navLinks } from "../../data"
+import Layout from "../../layouts/Layout.astro"
+import { teamData } from "../../components/TeamCard"
+
+export function getStaticPaths() {
+  return teamData.map((member) => ({
+    params: { slug: member.slug },
+    props: { member },
+  }))
+}
+
+const { slug } = Astro.params
+const { member } = Astro.props
+---
+
+<Layout title={`${member.name} | GEUT Team`} description={member.description}>
+  <TeamSection navLinks={navLinks} initialMember={slug} />
+</Layout>
+

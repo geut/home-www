@@ -27,35 +27,37 @@ export default function GeutianCard({
         maxHeight: "calc(100vh - var(--card-offset))",
       }}
     >
-      <figure className="rounded-t-xl size-full h-full min-h-60 ">
+      <figure className="rounded-t-xl size-full relative">
         <img
           src={data.image}
           alt={data.name}
           className={twMerge(
-            "size-full object-cover object-center mask-alpha mask-b-from-primary mask-b-from-75% mask-b-to-99% mask-b-to-transparent md:mask-r-from-30% md:mask-b-from-100%",
+            "size-full object-contain object-center mask-alpha bg-primary/30 mask-b-from-primary mask-b-from-65% mask-b-to-99% mask-b-to-transparent",
           )}
         />
-      </figure>
-
-      <div className="card-body md:min-w-96 min-w-72 md:mask-l-from-90% bg-curl-card bg-cover bg-right-top lg:bg-left lg:bg-origin-border shrink-0 flex-1 flex flex-col rounded-b-lg justify-start lg:px-10 text-primary-content">
-        <div className="flex flex-col -mb-2">
-          <div className="flex items-center text-[10px] lg:text-xs text-accent/70 font-mono uppercase tracking-wide">
+        <div className="flex flex-col gap-1 absolute bottom-0 left-6 md:left-10 md:bottom-4">
+          <div className="flex items-center align-bottom text-[10px] lg:text-xs text-accent w-fit px-2 rounded-lg bg-accent-content/50 font-mono uppercase tracking-wide">
             <span className="mr-1 -mt-[1px] font-bold font-mono">✛</span>user
           </div>
-          <h3 className="card-title h-10 lg:h-12 font-avantt tracking-tight w-full text-2xl md:text-3xl cursor-pointer">
+          <h3 className="card-title font-avantt tracking-tight w-full text-2xl md:text-3xl cursor-pointer">
             {data.name}
           </h3>
         </div>
+      </figure>
+
+      <div className="card-body pt-2 md:pt-0 pb-8 md:min-w-96 min-w-72 shrink-0 flex-1 flex flex-col rounded-b-lg justify-start lg:px-10 text-primary-content">
         <div
-          className="text-xs lg:text-sm text-primary-content font-inter uppercase text-wrap tracking-tight"
+          className="text-xs mb-1 md:text-base align-bottom text-primary-content font-inter uppercase text-wrap tracking-tight"
           dangerouslySetInnerHTML={{ __html: data.role }}
         />
         <div className="flex flex-col gap-1">
-          <div className="flex items-center text-[10px] lg:text-xs text-accent/70 font-mono uppercase tracking-wide">
+          <div className="flex items-center align-bottom text-[10px] lg:text-xs text-accent w-fit px-2 rounded-lg bg-accent-content/50 font-mono uppercase tracking-wide">
             <span className="mr-1 -mt-[2px] font-bold font-mono">✛</span>skills
           </div>
           <div className="flex flex-col gap-2">
-            <p className="text-sm text-primary-content">{data.description}</p>
+            <p className="text-sm md:text-base text-primary-content ">
+              {data.description}
+            </p>
             <ul className="list-none list-horizontal flex gap-2 items-center">
               {data.links.map((link) => (
                 <li className=" " key={link.type}>

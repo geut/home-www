@@ -27,6 +27,8 @@ export default function GeutCard({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        overflow: "hidden",
+        maxHeight: "calc(100vh - var(--card-offset))",
       }}
     >
       <div className="relative w-full bg-cover bg-curl-card dark:bg-curl-dark flex flex-1 flex-col font-mono uppercase p-2 lg:p-4 bg-primary/50 dark:bg-base-100 dark:border-base-100 rounded-2xl">
@@ -38,10 +40,10 @@ export default function GeutCard({
           <span className="md:col-start-1 md:row-start-2">team</span>
         </h2>
 
-        <div className="flex-1 flex flex-col w-full md:flex-row items-center md:self-start justify-end md:justify-between">
+        <div className="flex-1 flex flex-col w-full md:flex-row items-center md:self-start justify-end md:justify-between md:items-end">
           <a
             href="/contact"
-            className="btn btn-link leading-24 uppercase w-52 md:w-64 md:justify-self-start md:text-xl"
+            className="btn btn-link h-12 md:h-24 md:leading-24 uppercase w-52 md:justify-self-start md:text-6xl"
           >
             {isFront ? (
               <TextEffect
@@ -60,7 +62,7 @@ export default function GeutCard({
           </a>
           <Iso
             full
-            className="h-24 md:h-24 md:mt-1 md:leading-24 text-base-100 dark:text-primary"
+            className="h-12 md:h-24 md:mt-1 md:leading-24 text-base-100 dark:text-primary"
           />
         </div>
       </div>
