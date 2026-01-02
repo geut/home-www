@@ -32,7 +32,7 @@ export default function GeutianCard({
           src={data.image}
           alt={data.name}
           className={twMerge(
-            "size-full object-contain object-center mask-alpha bg-primary/30 mask-b-from-primary mask-b-from-65% mask-b-to-99% mask-b-to-transparent",
+            "size-full object-contain object-center mask-alpha bg-primary/30 dark:bg-base-100/30 mask-b-from-primary mask-b-from-65% mask-b-to-85% mask-b-to-transparent",
           )}
         />
         <div className="flex flex-col gap-1 absolute bottom-0 left-6 md:left-10 md:bottom-4">

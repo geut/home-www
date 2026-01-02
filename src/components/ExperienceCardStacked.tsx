@@ -79,7 +79,7 @@ export default function ExperienceCardStacked({
   return (
     <motion.div
       id={`slide-${id}`}
-      className="bg-primary/70 gpu-accelerate scale-95 backdrop-blur-xl w-full card border-primary border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-full lg:h-[30rem] lg:max-h-none origin-bottom shadow-xl touch-manipulation"
+      className="bg-primary/70 dark:bg-base-300/70 gpu-accelerate scale-95 backdrop-blur-xl w-full card border-primary dark:border-base-300 border-4 rounded-2xl hover:cursor-grab active:cursor-grabbing h-full lg:h-[30rem] lg:max-h-none origin-bottom shadow-xl touch-manipulation"
       style={{
         gridRow: 1,
         gridColumn: 1,
