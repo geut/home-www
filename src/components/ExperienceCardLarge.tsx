@@ -38,8 +38,8 @@ export default function ExperienceCardLarge({
   return (
     <motion.div
       id={`slide-${id}`}
-      className="relative rounded-2xl mx-2 w-[500px] bg-primary/70 backdrop-blur-xl rounded-tr-none card shrink-0 hover:cursor-grab active:cursor-grabbing h-[26rem] origin-bottom shadow-4 
-      after:content-none after:absolute after:left-[-3em] after:border-primary/50 after:border-4 after:rounded-none after:rotate-6"
+      className="relative rounded-2xl mx-2 w-[500px] bg-primary/70 dark:bg-base-300 backdrop-blur-xl rounded-tr-none card shrink-0 hover:cursor-grab active:cursor-grabbing origin-bottom shadow-4 
+      after:content-none after:absolute after:left-[-3em] after:border-primary/50 dark:after:border-base-300/50 after:border-4 after:rounded-none after:rotate-6"
       style={{
         transition: "0.150s transform",
       }}
@@ -50,7 +50,7 @@ export default function ExperienceCardLarge({
     >
       <div className="flex z-20 absolute -top-8 -right-0">
         <div
-          className="h-8 w-40 bg-primary/70 back dark:bg-secondary font-mono text-2xl text-accent px-2 rounded-4xl rounded-b-none"
+          className="h-8 w-40 bg-primary/70 dark:bg-base-300 font-mono text-2xl text-accent px-2 rounded-4xl rounded-b-none"
           style={{
             cornerTopLeftShape: "bevel",
             cornerTopRightShape: "round",
@@ -82,7 +82,7 @@ export default function ExperienceCardLarge({
           )}
         </figure>
 
-        <div className="card-body w-full bg-curl-card bg-clip-padding bg-no-repeat bg-size-[500px_auto] shrink-0 h-56 flex-1 flex flex-col rounded-b-lg justify-start lg:px-10 text-primary-content">
+        <div className="card-body w-full bg-curl-card dark:bg-curl-dark bg-no-repeat bg-top-right bg-clip-padding shrink-0 h-56 flex-1 flex flex-col rounded-b-lg justify-start lg:px-10 text-primary-content">
           <div className="flex flex-col gap-1">
             <div className="flex items-center text-[10px] h-[12px] lg:text-xs text-accent/70 font-mono uppercase tracking-wide leading-none">
               <span className="mr-1 -mt-[1px] font-bold font-mono">✛</span>{" "}

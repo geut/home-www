@@ -3,7 +3,7 @@ import { slide } from "astro:transitions"
 import AnimatedSection from "../AnimatedSection"
 import Navbar from "../Navbar"
 
-const { navLinks } = Astro.props
+const { navLinks, initialMember } = Astro.props
 import ActionButtons, { type actionKeys } from "../ActionButtons"
 import TeamCard from "../TeamCard"
 
@@ -22,7 +22,7 @@ const actionButtonsKeys = ["contact"] as unknown as actionKeys[]
           </h2>
         </div>
         <div class="flex flex-1 self-center justify-center max-h-[calc(100vh-20rem)]">
-          <TeamCard client:only="react" />
+          <TeamCard client:only="react" initialMember={initialMember} />
         </div>
       </div>
     </div>

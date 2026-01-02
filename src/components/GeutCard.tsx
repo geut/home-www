@@ -18,15 +18,18 @@ export default function GeutCard({
       id={id}
       isFront={isFront}
       handleDragEndCb={handleDragEndCb}
-      styleProps={{ height: "100%" }}
+      styleProps={{
+        height: "100%",
+        maxHeight: "100%",
+      }}
     >
-      <div className="flex flex-1 flex-col font-mono lg:p-4 bg-accent dark:bg-base-100 dark:border-base-100 rounded-2xl">
-        <h3 className="text-6xl/14 flex my-2 gap-0 mx-2 md:mx-4 items-center justify-center md:text-7xl/20 flex-shrink-0 font-avantt text-primary">
+      <div className="flex flex-1 flex-col font-mono lg:p-4 bg-accent dark:bg-base-300/70 dark:border-base-300 rounded-2xl">
+        <h3 className="text-4xl h-24 flex my-2 gap-0 mx-2 md:mx-4 items-center justify-center md:text-7xl/20 flex-shrink-0 font-avantt text-primary">
           This is{" "}
-          <Iso full className="h-18 leading-14 mt-4 md:h-24 md:leading-24" />
+          <Iso full className="h-12 mt-2.5 md:h-24 md:leading-24 md:mt-4" />
         </h3>
-        <div className="flex flex-1 flex-col md:grid md:grid-cols-3 md:content-center md:items-start font-mono font-extrabold justify-end items-center p-4 md:gap-x-8">
-          <p className="text-sm/relaxed md:text-justify uppercase md:text-lg font-mono dark:text-primary-content ">
+        <div className="flex flex-1 flex-col md:grid md:grid-cols-3 md:content-center md:items-start font-mono font-extrabold items-end justify-center px-4 py-2 md:p-4 md:gap-x-8">
+          <p className="text-sm/relaxed md:text-justify uppercase md:text-2xl font-mono dark:text-primary-content ">
             We’re{" "}
             <span className="font-bold text-primary dark:text-accent">
               GEUT
@@ -35,12 +38,12 @@ export default function GeutCard({
             years of experience building software that ships.
           </p>
           <div className="divider md:hidden md:mx-auto opacity-50 my-1 md:my-2" />
-          <p className="text-sm/relaxed md:text-justify uppercase md:text-lg font-mono text-primary">
+          <p className="text-sm/relaxed md:text-justify uppercase md:text-2xl font-mono text-primary">
             We specialize in everything JavaScript — from Node.js and TypeScript
             to Bun and the modern web. It’s what we live and breathe.
           </p>
           <div className="divider md:hidden md:mx-auto opacity-50 my-1 md:my-2" />
-          <p className="text-sm/relaxed md:text-justify uppercase md:text-lg font-mono dark:text-primary-content ">
+          <p className="text-sm/relaxed md:text-justify uppercase md:text-2xl font-mono dark:text-primary-content ">
             Need a full team or a precision strike? We plug in fast, move with
             purpose, and deliver.{" "}
             <a

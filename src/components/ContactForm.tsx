@@ -3,7 +3,7 @@ import Button from "./Button"
 export default function ContactForm() {
   return (
     <form className="md:max-w-2xl w-full">
-      <fieldset className="flex flex-col w-full items-start fieldset bg-base-200 text-base-content rounded-box border border-secondary p-4 lg:p-8">
+      <fieldset className="flex flex-col w-full items-start fieldset bg-base-300 text-base-content rounded-box border border-secondary p-4 lg:p-8">
         <legend className="fieldset-legend text-primary text-lg">
           Drop us a line
         </legend>
